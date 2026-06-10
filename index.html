@@ -3,1222 +3,557 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Leandro Raveli — Engineering Manager candidate, Principal Software Engineer & Mobile Architect. 20+ years.">
-<title>Leandro Raveli</title>
+<title>Leandro De Souza Raveli — Engineering Leadership</title>
+<meta name="description" content="Leandro De Souza Raveli — Principal Software Engineer & Engineering Manager candidate. Mobile architecture, Android/Kotlin, delivery leadership.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#0B1020;
+  --panel:#121A30;
+  --panel-2:#0E1528;
+  --line:rgba(140,160,210,.14);
+  --amber:#FFB454;
+  --cyan:#56E0D0;
+  --violet:#9D8CFF;
+  --text:#E9EDF7;
+  --muted:#97A1BC;
+  --radius:18px;
+  --display:'Space Grotesk',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  background:#04040a;color:#f1f5f9;
-  font-family:'Inter',system-ui,sans-serif;
-  line-height:1.6;overflow-x:hidden;
+  background:var(--ink);
+  color:var(--text);
+  font-family:var(--display);
+  line-height:1.6;
+  overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
 }
-::selection{background:#818cf8;color:#fff}
-a{color:inherit;text-decoration:none}
-img{max-width:100%}
+::selection{background:var(--amber);color:var(--ink)}
 
-/* ─── VARIABLES ─── */
-:root{
-  --bg:#04040a; --bg2:#070710; --bg3:#0d0d1c;
-  --card:rgba(255,255,255,0.04);
-  --bd:rgba(255,255,255,0.08);
-  --indigo:#818cf8; --cyan:#22d3ee; --fuchsia:#e879f9;
-  --green:#4ade80; --amber:#fbbf24;
-  --txt:#f1f5f9; --muted:#6b7280; --dim:#374151;
-  --pad:clamp(1.25rem,5vw,4rem);
+/* ---------- background grid ---------- */
+.grid-bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(120,150,220,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(120,150,220,.05) 1px,transparent 1px);
+  background-size:48px 48px;
+  mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,black 30%,transparent 100%);
+}
+.glow{
+  position:fixed;z-index:0;pointer-events:none;border-radius:50%;filter:blur(120px);opacity:.16;
+}
+.glow.a{width:520px;height:520px;background:var(--cyan);top:-180px;right:-120px}
+.glow.b{width:420px;height:420px;background:var(--violet);bottom:-160px;left:-140px}
+
+main,nav,footer{position:relative;z-index:1}
+
+/* ---------- nav ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 24px;
+  transition:background .3s,border-color .3s,backdrop-filter .3s;
+  border-bottom:1px solid transparent;
+}
+nav.scrolled{
+  background:rgba(11,16,32,.82);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom-color:var(--line);
+}
+.brand{font-family:var(--mono);font-size:.85rem;font-weight:700;color:var(--text);text-decoration:none;letter-spacing:.04em}
+.brand b{color:var(--amber)}
+.nav-links{display:flex;gap:22px}
+.nav-links a{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color .2s;
+}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--cyan)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px}
+@media(max-width:640px){.nav-links{display:none}}
+
+/* progress bar */
+#progress{
+  position:fixed;top:0;left:0;height:2px;width:0%;z-index:60;
+  background:linear-gradient(90deg,var(--amber),var(--cyan));
 }
 
-/* ─── SCROLL PROGRESS ─── */
-#spbar{position:fixed;top:0;left:0;height:2px;width:0;
-  background:linear-gradient(90deg,var(--indigo),var(--cyan),var(--fuchsia));
-  z-index:600;transition:width .05s linear}
+/* ---------- layout ---------- */
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+section{padding:96px 0}
+@media(max-width:640px){section{padding:64px 0}}
 
-/* ─── SECTION DOTS ─── */
-.sdots{position:fixed;right:1.5rem;top:50%;transform:translateY(-50%);
-  display:flex;flex-direction:column;gap:.75rem;z-index:500}
-.sdot{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--bd);
-  background:transparent;transition:all .35s;cursor:pointer;display:block}
-.sdot.on{background:var(--indigo);border-color:var(--indigo);
-  box-shadow:0 0 12px rgba(129,140,248,.5)}
-@media(max-width:768px){.sdots{display:none}}
+.eyebrow{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--cyan);display:flex;align-items:center;gap:12px;margin-bottom:18px;
+}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--cyan)}
+h2{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;margin-bottom:14px}
+.lede{color:var(--muted);max-width:640px;font-size:1.02rem}
 
-/* ─── NAV ─── */
-nav{position:fixed;top:0;left:0;right:0;z-index:400;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:1.4rem var(--pad);transition:.4s}
-nav.s{padding:.8rem var(--pad);background:rgba(4,4,10,.85);
-  backdrop-filter:blur(24px);border-bottom:1px solid var(--bd)}
-.logo{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.15rem;
-  letter-spacing:-.03em;display:flex;align-items:center;gap:.55rem}
-.logo-icon{width:32px;height:32px;border-radius:8px;display:grid;
-  place-items:center;font-size:.8rem;
-  background:linear-gradient(135deg,var(--indigo),var(--fuchsia));
-  box-shadow:0 4px 20px rgba(129,140,248,.4)}
-.nav-links{display:flex;align-items:center;gap:.25rem}
-.nav-links a{font-size:.82rem;font-weight:500;color:var(--muted);
-  padding:.45rem .85rem;border-radius:6px;transition:color .2s,background .2s}
-.nav-links a:hover{color:var(--txt);background:var(--card)}
-.nav-hire{background:rgba(129,140,248,.15) !important;
-  color:var(--indigo) !important;border:1px solid rgba(129,140,248,.3) !important;
-  margin-left:.5rem;transition:all .2s !important}
-.nav-hire:hover{background:var(--indigo) !important;color:#fff !important;
-  border-color:var(--indigo) !important}
-.nav-burger{display:none;flex-direction:column;gap:5px;
-  background:none;border:0;cursor:pointer;padding:6px;z-index:410}
-.nav-burger span{width:22px;height:1.5px;background:var(--txt);
-  border-radius:2px;transition:.3s}
-.nav-burger.o span:first-child{transform:translateY(6.5px) rotate(45deg)}
-.nav-burger.o span:nth-child(2){opacity:0}
-.nav-burger.o span:last-child{transform:translateY(-6.5px) rotate(-45deg)}
-.mob-nav{position:fixed;inset:0;background:rgba(4,4,10,.97);
-  display:none;flex-direction:column;align-items:center;justify-content:center;
-  gap:2rem;z-index:405}
-.mob-nav.o{display:flex}
-.mob-nav a{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:700;
-  color:var(--txt);transition:color .2s}
-.mob-nav a:hover{color:var(--indigo)}
-@media(max-width:760px){.nav-links{display:none}.nav-burger{display:flex}}
+/* ---------- reveal on scroll ---------- */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}.rv.d4{transition-delay:.32s}
 
-/* ─── HERO ─── */
-#hero{min-height:100vh;display:flex;align-items:center;
-  padding:7rem var(--pad) 5rem;position:relative;overflow:hidden}
+/* ---------- hero ---------- */
+.hero{
+  min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  padding-top:120px;padding-bottom:60px;
+}
+.hero .status{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--muted);
+  border:1px solid var(--line);border-radius:999px;padding:7px 16px;width:fit-content;
+  background:rgba(18,26,48,.6);margin-bottom:28px;
+}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);animation:pulse 2.2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+h1{
+  font-size:clamp(2.6rem,8vw,5.2rem);
+  font-weight:700;line-height:1.02;letter-spacing:-.035em;margin-bottom:24px;
+}
+h1 .accent{
+  background:linear-gradient(92deg,var(--amber) 10%,var(--cyan) 90%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-sub{font-size:clamp(1rem,2vw,1.2rem);color:var(--muted);max-width:620px;margin-bottom:36px}
+.hero-sub strong{color:var(--text);font-weight:600}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:64px}
+.btn{
+  font-family:var(--mono);font-size:.78rem;font-weight:700;letter-spacing:.06em;
+  padding:13px 26px;border-radius:10px;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn.primary{background:var(--amber);color:var(--ink)}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,180,84,.32)}
+.btn.ghost{border:1px solid var(--line);color:var(--text);background:rgba(18,26,48,.5)}
+.btn.ghost:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-2px)}
 
-/* floating orbs – CSS only, parallax via JS */
-.orb{position:absolute;border-radius:50%;pointer-events:none;will-change:transform}
-.orb1{width:min(50vw,600px);height:min(50vw,600px);
-  background:radial-gradient(circle,rgba(129,140,248,.12),transparent 65%);
-  top:-15%;right:-10%;animation:fl1 10s ease-in-out infinite}
-.orb2{width:min(40vw,480px);height:min(40vw,480px);
-  background:radial-gradient(circle,rgba(34,211,238,.08),transparent 65%);
-  bottom:-20%;left:-8%;animation:fl2 13s ease-in-out infinite}
-.orb3{width:min(25vw,300px);height:min(25vw,300px);
-  background:radial-gradient(circle,rgba(232,121,249,.1),transparent 65%);
-  top:40%;right:30%;animation:fl3 9s ease-in-out infinite}
-@keyframes fl1{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,30px)}}
-@keyframes fl2{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-30px)}}
-@keyframes fl3{0%,100%{transform:translate(0,0)}50%{transform:translate(-20px,40px)}}
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+}
+.stat{background:var(--panel-2);padding:22px 20px}
+.stat .num{
+  font-family:var(--mono);font-size:clamp(1.6rem,3.4vw,2.2rem);font-weight:700;color:var(--text);
+}
+.stat .num em{font-style:normal;color:var(--amber)}
+.stat .lbl{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+@media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}}
 
-/* hero grid */
-.hero-inner{max-width:1180px;margin:0 auto;width:100%;
-  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;
-  position:relative;z-index:2}
-@media(max-width:860px){.hero-inner{grid-template-columns:1fr;gap:2.5rem}}
+.scroll-hint{
+  margin-top:54px;font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);display:flex;align-items:center;gap:12px;
+}
+.scroll-hint::after{
+  content:"";width:1px;height:38px;background:linear-gradient(var(--cyan),transparent);
+  animation:drip 1.8s infinite;
+}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 
-.hero-badge{display:inline-flex;align-items:center;gap:.5rem;
-  font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--cyan);
-  border:1px solid rgba(34,211,238,.2);padding:.38rem .85rem;border-radius:99px;
-  background:rgba(34,211,238,.05);margin-bottom:1.6rem}
-.ping{width:7px;height:7px;border-radius:50%;background:var(--green);
-  animation:ping 2s infinite}
-@keyframes ping{0%{box-shadow:0 0 0 0 rgba(74,222,128,.5)}
-  100%{box-shadow:0 0 0 12px rgba(74,222,128,0)}}
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:start}
+@media(max-width:820px){.about-grid{grid-template-columns:1fr}}
+.about-grid p{color:var(--muted);margin-bottom:18px}
+.about-grid p strong{color:var(--text)}
+.principles{display:flex;flex-direction:column;gap:14px}
+.principle{
+  border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:var(--panel-2);
+  transition:border-color .25s,transform .25s;
+}
+.principle:hover{border-color:rgba(86,224,208,.45);transform:translateX(4px)}
+.principle h4{font-size:.95rem;margin-bottom:4px}
+.principle h4::before{content:"▸ ";color:var(--amber)}
+.principle p{font-size:.85rem;color:var(--muted);margin:0}
 
-/* split-text hero title */
-.hero-h1{font-family:'Outfit',sans-serif;font-weight:900;
-  font-size:clamp(3rem,8.5vw,7rem);
-  letter-spacing:-.05em;line-height:.97;margin-bottom:1.5rem}
-.word-row{overflow:hidden;display:block}
-.word-row .w{display:inline-block;transform:translateY(110%);
-  transition:transform .8s cubic-bezier(.16,1,.3,1)}
-.word-row.show .w{transform:translateY(0)}
-.grad-txt{background:linear-gradient(110deg,var(--indigo),var(--cyan) 50%,var(--fuchsia));
-  background-size:200% auto;-webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;animation:gs 5s linear infinite}
-@keyframes gs{to{background-position:200% center}}
+/* ---------- dials ---------- */
+.dials{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px;
+}
+@media(max-width:900px){.dials{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){.dials{gap:16px}}
+.dial-card{
+  background:var(--panel-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px 18px 22px;text-align:center;transition:border-color .3s,transform .3s,box-shadow .3s;
+}
+.dial-card:hover{border-color:rgba(255,180,84,.4);transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.35)}
+.dial-svg{width:128px;height:128px;max-width:100%}
+.dial-track{stroke:rgba(140,160,210,.14);fill:none;stroke-width:9;stroke-linecap:round}
+.dial-fill{
+  fill:none;stroke-width:9;stroke-linecap:round;
+  transform:rotate(135deg);transform-origin:50% 50%;
+  stroke-dasharray:0 1000;
+  transition:stroke-dasharray 1.4s cubic-bezier(.25,.8,.25,1);
+}
+.dial-val{font-family:var(--mono);font-size:1.45rem;font-weight:700;fill:var(--text)}
+.dial-unit{font-family:var(--mono);font-size:.55rem;fill:var(--muted);letter-spacing:.15em}
+.dial-name{font-weight:600;font-size:.95rem;margin-top:10px}
+.dial-tag{font-family:var(--mono);font-size:.64rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
 
-.hero-role{font-family:'JetBrains Mono',monospace;
-  font-size:clamp(.9rem,1.4vw,1.1rem);color:var(--muted);
-  margin-bottom:1.6rem;min-height:1.7em}
-.tw-cursor{border-right:2px solid var(--indigo);animation:blink 1s step-end infinite}
-@keyframes blink{50%{border-color:transparent}}
+/* ---------- bars ---------- */
+.bars{margin-top:56px;display:grid;grid-template-columns:1fr 1fr;gap:18px 48px}
+@media(max-width:760px){.bars{grid-template-columns:1fr}}
+.bar-row .bar-head{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.74rem;margin-bottom:8px}
+.bar-row .bar-head .pct{color:var(--amber)}
+.bar-track{height:7px;border-radius:99px;background:rgba(140,160,210,.12);overflow:hidden}
+.bar-fill{
+  height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,var(--cyan),var(--violet));
+  transition:width 1.3s cubic-bezier(.25,.8,.25,1);
+}
 
-.hero-p{color:var(--muted);font-size:1rem;max-width:42ch;line-height:1.8;margin-bottom:2.5rem}
-.hero-btns{display:flex;flex-wrap:wrap;gap:.9rem;margin-bottom:3rem}
-.btn{display:inline-flex;align-items:center;gap:.55rem;padding:.8rem 1.7rem;
-  border-radius:99px;font-weight:600;font-size:.92rem;
-  transition:transform .25s,box-shadow .25s,background .25s,border-color .25s}
-.btn-fill{background:linear-gradient(135deg,var(--indigo),var(--fuchsia));color:#fff}
-.btn-fill:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(129,140,248,.35)}
-.btn-out{border:1px solid var(--bd);color:var(--txt)}
-.btn-out:hover{transform:translateY(-3px);border-color:var(--indigo);color:var(--indigo)}
+/* ---------- timeline ---------- */
+.timeline{position:relative;margin-top:56px;padding-left:36px}
+.timeline::before{
+  content:"";position:absolute;left:8px;top:8px;bottom:8px;width:2px;
+  background:linear-gradient(var(--amber),var(--cyan),transparent);opacity:.5;
+}
+.t-item{position:relative;padding-bottom:56px}
+.t-item:last-child{padding-bottom:0}
+.t-item::before{
+  content:"";position:absolute;left:-36px;top:7px;width:18px;height:18px;border-radius:50%;
+  background:var(--ink);border:2px solid var(--amber);box-shadow:0 0 0 5px rgba(255,180,84,.12);
+}
+.t-item.alt::before{border-color:var(--cyan);box-shadow:0 0 0 5px rgba(86,224,208,.12)}
+.t-date{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:var(--amber);text-transform:uppercase}
+.t-item.alt .t-date{color:var(--cyan)}
+.t-item h3{font-size:1.25rem;margin:8px 0 2px}
+.t-role{color:var(--muted);font-size:.92rem;margin-bottom:16px}
+.t-card{
+  background:var(--panel-2);border:1px solid var(--line);border-radius:var(--radius);padding:24px 26px;
+}
+.t-card ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.t-card li{color:var(--muted);font-size:.92rem;padding-left:22px;position:relative}
+.t-card li::before{content:"//";position:absolute;left:0;font-family:var(--mono);color:var(--cyan);font-size:.78rem;top:3px}
+.t-card li strong{color:var(--text)}
+.t-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chip{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;
+  border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--muted);
+}
 
-/* hero kpis */
-.hero-kpis{display:flex;gap:2.5rem}
-.hkpi-num{font-family:'Outfit',sans-serif;font-weight:900;font-size:2.2rem;
-  letter-spacing:-.03em;line-height:1}
-.hkpi-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;
-  letter-spacing:.08em;margin-top:.2rem}
+/* ---------- stack groups ---------- */
+.stack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+@media(max-width:860px){.stack-grid{grid-template-columns:1fr}}
+.stack-card{
+  background:var(--panel-2);border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px;
+  transition:transform .3s,border-color .3s;
+}
+.stack-card:hover{transform:translateY(-4px)}
+.stack-card.c1:hover{border-color:rgba(255,180,84,.45)}
+.stack-card.c2:hover{border-color:rgba(86,224,208,.45)}
+.stack-card.c3:hover{border-color:rgba(157,140,255,.45)}
+.stack-card .ico{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}
+.c1 .ico{color:var(--amber)}.c2 .ico{color:var(--cyan)}.c3 .ico{color:var(--violet)}
+.stack-card h3{font-size:1.1rem;margin-bottom:14px}
+.stack-card .t-chips{margin-top:0}
 
-/* hero right – visual panel */
-.hero-panel{display:flex;flex-direction:column;gap:1rem}
-.panel-card{background:var(--card);border:1px solid var(--bd);
-  border-radius:18px;padding:1.5rem;backdrop-filter:blur(10px);
-  transition:transform .35s,border-color .35s}
-.panel-card:hover{transform:translateY(-4px) scale(1.01);border-color:rgba(129,140,248,.2)}
+/* ---------- footer / contact ---------- */
+.contact{
+  text-align:center;border:1px solid var(--line);border-radius:24px;
+  background:linear-gradient(180deg,var(--panel) 0%,var(--panel-2) 100%);
+  padding:72px 28px;position:relative;overflow:hidden;
+}
+.contact::before{
+  content:"";position:absolute;inset:-50%;
+  background:radial-gradient(circle at 50% 0%,rgba(86,224,208,.1),transparent 55%);
+  pointer-events:none;
+}
+.contact h2{margin-bottom:10px}
+.contact p{color:var(--muted);max-width:480px;margin:0 auto 32px}
+.contact .links{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
+footer{
+  padding:36px 24px;text-align:center;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:var(--muted);
+}
+footer .sig{color:var(--amber)}
 
-.profile-row{display:flex;align-items:center;gap:1.1rem}
-.avatar{width:56px;height:56px;border-radius:50%;flex-shrink:0;
-  display:grid;place-items:center;font-family:'Outfit',sans-serif;
-  font-weight:900;font-size:1.2rem;
-  background:linear-gradient(135deg,var(--indigo),var(--fuchsia),var(--cyan));
-  box-shadow:0 8px 24px rgba(129,140,248,.3)}
-.profile-name{font-family:'Outfit',sans-serif;font-weight:700;font-size:1.05rem}
-.profile-role{font-size:.78rem;color:var(--muted);margin-top:.1rem}
-.status-chip{display:inline-flex;align-items:center;gap:.4rem;
-  background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2);
-  color:var(--green);font-size:.7rem;padding:.3rem .7rem;border-radius:99px;
-  margin-top:.6rem;font-family:'JetBrains Mono',monospace}
-
-/* mini skill bars in panel */
-.mini-bars{display:flex;flex-direction:column;gap:.7rem;margin-top:.5rem}
-.mb-row{}
-.mb-top{display:flex;justify-content:space-between;font-size:.75rem;margin-bottom:.3rem}
-.mb-top b{font-weight:500}
-.mb-top span{font-family:'JetBrains Mono',monospace;color:var(--muted);font-size:.7rem}
-.mb-track{height:4px;background:rgba(255,255,255,.05);border-radius:99px;overflow:hidden}
-.mb-fill{height:100%;border-radius:99px;width:0;
-  transition:width 1.8s cubic-bezier(.16,1,.3,1)}
-
-/* stack chips */
-.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.2rem}
-.chip{font-family:'JetBrains Mono',monospace;font-size:.68rem;
-  padding:.25rem .65rem;border-radius:6px;
-  background:rgba(255,255,255,.05);border:1px solid var(--bd);color:var(--muted)}
-
-/* ─── SCROLL REVEAL CLASSES ─── */
-.reveal{opacity:0;transform:translateY(48px);
-  transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
-.reveal.on{opacity:1;transform:none}
-.reveal-l{opacity:0;transform:translateX(-48px);
-  transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
-.reveal-l.on{opacity:1;transform:none}
-.reveal-r{opacity:0;transform:translateX(48px);
-  transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
-.reveal-r.on{opacity:1;transform:none}
-.dd1{transition-delay:.1s}.dd2{transition-delay:.2s}.dd3{transition-delay:.3s}
-.dd4{transition-delay:.4s}.dd5{transition-delay:.5s}.dd6{transition-delay:.6s}
-
-/* ─── COMMON SECTION ELEMENTS ─── */
-.section{padding:clamp(5rem,10vw,9rem) var(--pad);position:relative}
-.section-inner{max-width:1180px;margin:0 auto}
-.eyebrow{font-family:'JetBrains Mono',monospace;font-size:.7rem;
-  text-transform:uppercase;letter-spacing:.18em;color:var(--indigo);
-  display:flex;align-items:center;gap:.5rem;margin-bottom:1.2rem}
-.eyebrow::before{content:'';width:24px;height:1.5px;background:var(--indigo)}
-.sec-title{font-family:'Outfit',sans-serif;font-weight:800;
-  font-size:clamp(2.2rem,5.5vw,4rem);letter-spacing:-.04em;line-height:1.02}
-.sec-sub{color:var(--muted);font-size:1rem;margin-top:.9rem;max-width:52ch;line-height:1.75}
-
-/* ─── ABOUT ─── */
-#about{background:var(--bg2)}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
-@media(max-width:820px){.about-grid{grid-template-columns:1fr;gap:3rem}}
-
-/* word-by-word big text */
-.about-statement{font-family:'Outfit',sans-serif;font-weight:700;
-  font-size:clamp(1.3rem,3vw,2rem);line-height:1.4;letter-spacing:-.02em;
-  margin-bottom:2rem}
-.about-statement .ww{overflow:hidden;display:inline-block;
-  vertical-align:top;margin-right:.3em}
-.about-statement .ww .w{display:inline-block;transform:translateY(110%);
-  transition:transform .7s cubic-bezier(.16,1,.3,1)}
-.about-statement .ww.show .w{transform:translateY(0)}
-.about-statement .hl{color:var(--indigo)}
-.about-statement .hl2{color:var(--cyan)}
-
-.about-body p{color:var(--muted);font-size:.97rem;line-height:1.8;margin-bottom:1.1rem}
-.about-body p:last-child{margin-bottom:0}
-.about-body strong{color:var(--txt);font-weight:600}
-.contact-list{margin-top:2rem;display:flex;flex-direction:column;gap:0}
-.cl-row{display:flex;align-items:center;gap:.75rem;
-  padding:.7rem 0;border-bottom:1px solid var(--bd);
-  font-size:.88rem;color:var(--muted)}
-.cl-row:last-child{border-bottom:0}
-.cl-icon{color:var(--indigo);font-size:.85rem;width:16px;text-align:center}
-
-/* about stats */
-.stats-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-@media(max-width:520px){.stats-bar{grid-template-columns:1fr 1fr}}
-.sbar-item{padding:1.6rem;background:var(--card);border:1px solid var(--bd);
-  border-radius:16px;transition:border-color .3s,transform .3s}
-.sbar-item:hover{border-color:rgba(129,140,248,.25);transform:translateY(-4px)}
-.sbar-num{font-family:'Outfit',sans-serif;font-weight:900;
-  font-size:clamp(2.2rem,4vw,3rem);letter-spacing:-.04em;line-height:1;
-  background:linear-gradient(135deg,var(--indigo),var(--cyan));
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.sbar-lbl{font-size:.75rem;color:var(--muted);text-transform:uppercase;
-  letter-spacing:.08em;margin-top:.4rem;line-height:1.4}
-
-/* ─── SKILLS – horizontal sticky scroll ─── */
-#skills{height:350vh;position:relative}
-.skills-sticky{position:sticky;top:0;height:100vh;overflow:hidden;
-  display:flex;flex-direction:column;padding-top:clamp(5.5rem,9vh,7rem)}
-.skills-head{padding:0 var(--pad);flex-shrink:0;margin-bottom:2.2rem}
-.skills-track-wrap{flex:1;min-height:0;display:flex;align-items:center;overflow:hidden;pointer-events:none}
-.skills-track{display:flex;gap:1.5rem;padding:0 var(--pad);
-  will-change:transform;transform:translateX(0)}
-.skill-card{flex:0 0 min(85vw,360px);
-  background:var(--card);border:1px solid var(--bd);border-radius:22px;
-  padding:2rem;transition:border-color .3s;pointer-events:all}
-.skill-card:hover{border-color:rgba(129,140,248,.25)}
-.sc-icon{width:36px;height:36px;display:block;margin-bottom:1rem;flex-shrink:0}
-.skill-card-title{font-family:'Outfit',sans-serif;font-weight:700;
-  font-size:1.2rem;margin-bottom:.3rem}
-.skill-card-sub{font-size:.78rem;color:var(--muted);margin-bottom:1.5rem}
-
-/* circular ring for skill card */
-.sc-ring{position:relative;width:90px;height:90px;margin:0 auto 1.2rem;
-  display:flex;align-items:center;justify-content:center}
-.sc-ring svg{transform:rotate(-90deg);position:absolute;inset:0}
-.sc-ring-bg{fill:none;stroke:rgba(255,255,255,.05);stroke-width:7}
-.sc-ring-fg{fill:none;stroke-width:7;stroke-linecap:round;
-  stroke-dasharray:246.6;stroke-dashoffset:246.6;/* 2π×39.27≈246.6 */
-  transition:stroke-dashoffset 1.8s cubic-bezier(.16,1,.3,1)}
-.sc-ring-val{font-family:'Outfit',sans-serif;font-weight:900;
-  font-size:1.25rem;position:relative;z-index:1}
-
-.skill-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:1.2rem}
-.skill-tags span{font-size:.68rem;font-family:'JetBrains Mono',monospace;
-  padding:.2rem .55rem;border-radius:5px;
-  background:rgba(255,255,255,.04);border:1px solid var(--bd);color:var(--muted)}
-
-.h-scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
-  display:flex;align-items:center;gap:.6rem;
-  font-family:'JetBrains Mono',monospace;font-size:.68rem;
-  color:var(--muted);letter-spacing:.1em;animation:nudge 2s ease-in-out infinite}
-@keyframes nudge{0%,100%{transform:translateX(-50%) translateX(0)}
-  50%{transform:translateX(-50%) translateX(14px)}}
-.h-scroll-hint svg{flex-shrink:0}
-
-/* ─── EXPERIENCE ─── */
-#experience{background:var(--bg2)}
-.exp-layout{display:grid;grid-template-columns:64px 1fr;gap:0 1.5rem;
-  position:relative;margin-top:3.5rem}
-@media(max-width:640px){.exp-layout{grid-template-columns:40px 1fr;gap:0 1rem}}
-
-/* animated SVG timeline line */
-.tl-svg{grid-column:1;grid-row:1/99;position:relative}
-.tl-svg svg{position:sticky;top:50vh;transform:translateY(-50%);display:block;
-  margin:0 auto}
-#tl-line{stroke-dasharray:800;stroke-dashoffset:800;
-  transition:stroke-dashoffset .1s linear}
-
-/* timeline items */
-.tl-item{grid-column:2;margin-bottom:2.5rem;position:relative}
-.tl-item:last-child{margin-bottom:0}
-.tl-dot-wrap{position:absolute;left:-2.15rem;top:.3rem;z-index:2}
-@media(max-width:640px){.tl-dot-wrap{left:-1.5rem}}
-.tl-dot{width:14px;height:14px;border-radius:50%;border:2.5px solid var(--bg2);
-  transition:transform .3s,box-shadow .3s}
-.tl-item:hover .tl-dot{transform:scale(1.4)}
-.tl-card{background:var(--card);border:1px solid var(--bd);
-  border-radius:18px;padding:1.8rem;
-  transition:border-color .35s,transform .35s}
-.tl-card:hover{border-color:rgba(129,140,248,.2);transform:translateX(6px)}
-.tl-when{font-family:'JetBrains Mono',monospace;font-size:.72rem;
-  color:var(--indigo);margin-bottom:.45rem;letter-spacing:.06em}
-.tl-role{font-family:'Outfit',sans-serif;font-weight:700;
-  font-size:1.25rem;letter-spacing:-.02em;margin-bottom:.2rem}
-.tl-co{font-size:.88rem;color:var(--muted);margin-bottom:1.1rem}
-.tl-pts{list-style:none;display:flex;flex-direction:column;gap:.55rem}
-.tl-pts li{font-size:.87rem;color:var(--muted);line-height:1.6;
-  padding-left:1.2rem;position:relative}
-.tl-pts li::before{content:'→';position:absolute;left:0;color:var(--indigo)}
-.tl-pts li strong{color:var(--txt);font-weight:600}
-.tl-chips{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:1.1rem}
-.tl-chips i{font-style:normal;font-family:'JetBrains Mono',monospace;
-  font-size:.67rem;padding:.2rem .55rem;border-radius:5px;
-  background:rgba(255,255,255,.04);border:1px solid var(--bd);color:var(--muted)}
-
-/* ─── LEADERSHIP ─── */
-#leadership{background:var(--bg3)}
-.lead-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem}
-@media(max-width:820px){.lead-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:540px){.lead-grid{grid-template-columns:1fr}}
-.lead-card{background:var(--card);border:1px solid var(--bd);border-radius:18px;
-  padding:1.8rem;transition:transform .35s,border-color .35s;
-  /* 3D tilt on hover via JS */
-  transform-style:preserve-3d;perspective:600px}
-.lead-card:hover{border-color:rgba(129,140,248,.2)}
-.lead-n{font-family:'JetBrains Mono',monospace;font-size:.68rem;
-  color:var(--indigo);margin-bottom:.9rem;letter-spacing:.1em}
-.lead-icon{font-size:1.6rem;display:block;margin-bottom:.8rem}
-.lead-title{font-family:'Outfit',sans-serif;font-weight:700;
-  font-size:1.05rem;margin-bottom:.45rem;letter-spacing:-.01em}
-.lead-body{font-size:.86rem;color:var(--muted);line-height:1.65}
-
-/* ─── EDUCATION ─── */
-#education{background:var(--bg2)}
-.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:3rem}
-@media(max-width:620px){.edu-grid{grid-template-columns:1fr}}
-.edu-card{background:var(--card);border:1px solid var(--bd);border-radius:18px;
-  padding:1.8rem;display:flex;gap:1.2rem;
-  transition:border-color .35s,transform .35s}
-.edu-card:hover{border-color:rgba(34,211,238,.2);transform:translateY(-4px)}
-.edu-ico{width:52px;height:52px;border-radius:12px;flex-shrink:0;
-  display:grid;place-items:center;font-size:1.5rem;
-  background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.15)}
-.edu-deg{font-family:'Outfit',sans-serif;font-weight:700;
-  font-size:1rem;line-height:1.3;margin-bottom:.35rem}
-.edu-school{font-size:.83rem;color:var(--cyan);margin-bottom:.15rem}
-.edu-type{font-size:.73rem;color:var(--muted)}
-
-/* ─── TECH STACK BAND ─── */
-#stack{padding:clamp(2.5rem,5vw,4rem) 0;background:var(--bg3);overflow:hidden;
-  border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
-.stack-ticker{display:flex;animation:stk 50s linear infinite;white-space:nowrap}
-#stack:hover .stack-ticker{animation-play-state:paused}
-.ti{display:inline-flex;align-items:center;gap:.65rem;
-  padding:.4rem 2rem;border-right:1px solid var(--bd)}
-.ti-logo{width:22px;height:22px;flex-shrink:0;display:block}
-.ti-name{font-family:'Outfit',sans-serif;font-weight:600;
-  font-size:clamp(.82rem,1.5vw,1rem);color:rgba(255,255,255,.45);white-space:nowrap}
-@keyframes stk{to{transform:translateX(-50%)}}
-
-/* ─── CONTACT ─── */
-#contact{padding:clamp(5rem,12vw,10rem) var(--pad);background:var(--bg2)}
-.contact-inner{max-width:1180px;margin:0 auto}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-@media(max-width:780px){.contact-grid{grid-template-columns:1fr;gap:2.5rem}}
-.cta-title{font-family:'Outfit',sans-serif;font-weight:900;
-  font-size:clamp(2.8rem,7vw,5.5rem);letter-spacing:-.06em;line-height:.97;
-  margin-bottom:1.2rem}
-.cta-grad{background:linear-gradient(110deg,var(--indigo),var(--cyan) 50%,var(--fuchsia));
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.cta-sub{color:var(--muted);font-size:1rem;max-width:40ch;line-height:1.75;margin-bottom:2rem}
-.cta-btn{display:inline-flex;align-items:center;gap:.6rem;
-  background:linear-gradient(135deg,var(--indigo),var(--fuchsia));
-  color:#fff;padding:.9rem 2rem;border-radius:99px;
-  font-weight:700;font-size:.95rem;
-  box-shadow:0 12px 40px rgba(129,140,248,.25);
-  transition:transform .25s,box-shadow .25s}
-.cta-btn:hover{transform:translateY(-3px);box-shadow:0 20px 50px rgba(129,140,248,.4)}
-
-.contact-links{display:flex;flex-direction:column;gap:.8rem}
-.clink{display:flex;align-items:center;justify-content:space-between;
-  padding:1rem 1.3rem;background:var(--card);border:1px solid var(--bd);
-  border-radius:12px;font-size:.9rem;font-weight:500;
-  transition:border-color .25s,transform .25s,background .25s}
-.clink:hover{border-color:var(--indigo);transform:translateX(6px);
-  background:rgba(129,140,248,.06)}
-.clink-arr{color:var(--indigo);transition:transform .25s}
-.clink:hover .clink-arr{transform:translateX(5px)}
-
-/* ─── FOOTER ─── */
-footer{padding:2rem var(--pad);border-top:1px solid var(--bd);
-  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
-  font-size:.8rem;color:var(--muted)}
-footer .fb{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:var(--txt)}
-footer .fb span{
-  background:linear-gradient(90deg,var(--indigo),var(--cyan));
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-
-/* ─── BACK TO TOP ─── */
-#btt{position:fixed;bottom:1.8rem;right:1.8rem;z-index:300;width:46px;height:46px;
-  border-radius:50%;background:linear-gradient(135deg,var(--indigo),var(--fuchsia));
-  border:0;cursor:pointer;display:grid;place-items:center;color:#fff;
-  opacity:0;transform:translateY(16px) scale(.85);transition:.35s;
-  box-shadow:0 8px 24px rgba(129,140,248,.3)}
-#btt.show{opacity:1;transform:none}
-#btt:hover{transform:translateY(-3px) scale(1.08);box-shadow:0 14px 32px rgba(129,140,248,.45)}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none}
+}
 </style>
 </head>
 <body>
 
-<div id="spbar"></div>
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="glow a" aria-hidden="true"></div>
+<div class="glow b" aria-hidden="true"></div>
+<div id="progress" aria-hidden="true"></div>
 
-<!-- section dots -->
-<nav class="sdots" id="sdots">
-  <a class="sdot" data-sec="hero"       href="#hero"       title="Hero"></a>
-  <a class="sdot" data-sec="about"      href="#about"      title="About"></a>
-  <a class="sdot" data-sec="skills"     href="#skills"     title="Skills"></a>
-  <a class="sdot" data-sec="experience" href="#experience" title="Experience"></a>
-  <a class="sdot" data-sec="leadership" href="#leadership" title="Leadership"></a>
-  <a class="sdot" data-sec="contact"    href="#contact"    title="Contact"></a>
-</nav>
-
-<!-- nav -->
-<nav id="topnav">
-  <a href="#hero" class="logo">
-    <div class="logo-icon">LR</div>
-    Leandro Raveli
-  </a>
-  <div class="nav-links" id="navlinks">
+<nav id="nav">
+  <a class="brand" href="#top">leandro<b>.raveli</b>()</a>
+  <div class="nav-links">
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#experience">Experience</a>
-    <a href="#leadership">Leadership</a>
-    <a href="#contact" class="nav-hire">Let's talk →</a>
+    <a href="#stack">Stack</a>
+    <a href="#contact">Contact</a>
   </div>
-  <button class="nav-burger" id="nbgr"><span></span><span></span><span></span></button>
 </nav>
-<div class="mob-nav" id="mobnav">
-  <a href="#about"      id="ml1">About</a>
-  <a href="#skills"     id="ml2">Skills</a>
-  <a href="#experience" id="ml3">Experience</a>
-  <a href="#leadership" id="ml4">Leadership</a>
-  <a href="#contact"    id="ml5">Contact</a>
-</div>
 
-<!-- ══════════════ HERO ══════════════ -->
-<section id="hero">
-  <div class="orb orb1" data-parallax=".15"></div>
-  <div class="orb orb2" data-parallax="-.12"></div>
-  <div class="orb orb3" data-parallax=".08"></div>
+<main id="top">
 
-  <div class="hero-inner">
-    <div>
-      <div class="hero-badge"><span class="ping"></span>&nbsp;Open to Engineering Manager roles</div>
-      <h1 class="hero-h1">
-        <span class="word-row"><span class="w">Engineering</span></span>
-        <span class="word-row"><span class="w grad-txt">leadership</span></span>
-        <span class="word-row"><span class="w">at scale.</span></span>
-      </h1>
-      <div class="hero-role">&gt; <span id="tw"></span><span class="tw-cursor"></span></div>
-      <p class="hero-p">20+ years building and leading high-performing engineering teams. Principal Software Engineer at Vitality, mobile architect &amp; coaching specialist.</p>
-      <div class="hero-btns">
-        <a href="#experience" class="btn btn-fill">
-          View experience
-          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <a href="#contact" class="btn btn-out">Get in touch</a>
-      </div>
-      <div class="hero-kpis">
-        <div><div class="hkpi-num" id="kp1">0</div><div class="hkpi-label">Years exp.</div></div>
-        <div><div class="hkpi-num" id="kp2">0</div><div class="hkpi-label">@ Vitality</div></div>
-        <div><div class="hkpi-num" id="kp3">0</div><div class="hkpi-label">Engineers led</div></div>
-      </div>
+  <!-- HERO -->
+  <header class="hero wrap">
+    <span class="status rv"><span class="dot"></span>OPEN TO ENGINEERING MANAGER ROLES · BOURNEMOUTH, UK</span>
+    <h1 class="rv d1">Leandro De Souza Raveli<br><span class="accent">Engineering, led with intent.</span></h1>
+    <p class="hero-sub rv d2">Principal Software Engineer and <strong>Engineering Manager candidate</strong> with 20+ years across product-led, enterprise and high-scale environments — turning ambiguous business needs into <strong>scalable mobile architecture</strong> and teams that own their craft.</p>
+    <div class="hero-ctas rv d3">
+      <a class="btn primary" href="#experience">View experience ↓</a>
+      <a class="btn ghost" href="mailto:leandro.raveli@gmail.com">leandro.raveli@gmail.com</a>
     </div>
-
-    <div class="hero-panel">
-      <div class="panel-card">
-        <div class="profile-row">
-          <div class="avatar">LR</div>
-          <div>
-            <div class="profile-name">Leandro Raveli</div>
-            <div class="profile-role">Principal Software Engineer</div>
-            <div class="status-chip">● open to work</div>
-          </div>
-        </div>
-      </div>
-      <div class="panel-card">
-        <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.9rem;font-family:'JetBrains Mono',monospace">Core proficiency</div>
-        <div class="mini-bars">
-          <div class="mb-row"><div class="mb-top"><b>Kotlin / Android</b><span>95%</span></div><div class="mb-track"><div class="mb-fill" data-w="95" style="background:linear-gradient(90deg,var(--indigo),var(--cyan))"></div></div></div>
-          <div class="mb-row"><div class="mb-top"><b>Mobile Architecture</b><span>92%</span></div><div class="mb-track"><div class="mb-fill" data-w="92" style="background:linear-gradient(90deg,var(--indigo),var(--fuchsia))"></div></div></div>
-          <div class="mb-row"><div class="mb-top"><b>Engineering Leadership</b><span>90%</span></div><div class="mb-track"><div class="mb-fill" data-w="90" style="background:linear-gradient(90deg,var(--cyan),var(--green))"></div></div></div>
-          <div class="mb-row"><div class="mb-top"><b>CI/CD &amp; DevOps</b><span>88%</span></div><div class="mb-track"><div class="mb-fill" data-w="88" style="background:linear-gradient(90deg,var(--fuchsia),var(--amber))"></div></div></div>
-        </div>
-      </div>
-      <div class="panel-card">
-        <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.8rem;font-family:'JetBrains Mono',monospace">Tech stack</div>
-        <div class="chips">
-          <span class="chip">Kotlin</span><span class="chip">Android</span><span class="chip">Compose</span>
-          <span class="chip">GraphQL</span><span class="chip">Hilt</span><span class="chip">CI/CD</span>
-          <span class="chip">C# / .NET</span><span class="chip">Firebase</span>
-        </div>
-      </div>
+    <div class="stats rv d4">
+      <div class="stat"><div class="num"><span data-count="20">0</span><em>+</em></div><div class="lbl">Years in software</div></div>
+      <div class="stat"><div class="num"><span data-count="8">0</span><em>+</em></div><div class="lbl">Years at Vitality UK</div></div>
+      <div class="stat"><div class="num"><span data-count="14">0</span></div><div class="lbl">Engineer pod led</div></div>
+      <div class="stat"><div class="num"><span data-count="3">0</span></div><div class="lbl">Countries · BR → UK</div></div>
     </div>
-  </div>
-</section>
+    <div class="scroll-hint rv d4">Scroll</div>
+  </header>
 
-<!-- ══════════════ ABOUT ══════════════ -->
-<section id="about" class="section">
-  <div class="section-inner">
+  <!-- ABOUT -->
+  <section id="about" class="wrap">
+    <div class="eyebrow rv">01 · Profile</div>
+    <h2 class="rv">Technically grounded.<br>People focused.</h2>
     <div class="about-grid">
-      <div class="reveal-l">
-        <div class="eyebrow">About me</div>
-        <div class="about-statement" id="about-statement">
-          Technically grounded. People first. 20 years of engineering depth with a leadership style built on coaching, clarity and excellence.
-        </div>
-        <div class="about-body">
-          <p>Strategic engineering leader with over <strong>20 years</strong> across product-led, enterprise and high-scale environments — from Accenture to global health-tech.</p>
-          <p>Currently <strong>Principal Software Engineer at Vitality Health Insurance UK</strong>, with deep expertise in Android/Kotlin, CI/CD and engineering standards.</p>
-          <p>Strong <strong>Engineering Manager candidate</strong> who challenges decisions constructively while empowering teams to own implementation choices and deliver with confidence.</p>
-        </div>
-        <div class="contact-list">
-          <div class="cl-row"><span class="cl-icon">◈</span> Bournemouth, Dorset, UK</div>
-          <div class="cl-row"><span class="cl-icon">◈</span> leandro.raveli@gmail.com</div>
-          <div class="cl-row"><span class="cl-icon">◈</span> +44 07467 414887</div>
-        </div>
+      <div class="rv d1">
+        <p>Strategic engineering leader with deep expertise in <strong>mobile architecture, Android/Kotlin, CI/CD and system design</strong>. Currently operating as Principal Software Engineer at Vitality Health Insurance UK, partnering closely with architects, requirements engineers and stakeholders to shape scalable, maintainable solutions.</p>
+        <p>My leadership style centres on <strong>coaching, delivery clarity and technical excellence</strong> — comfortable challenging engineering decisions constructively, while enabling teams to own implementation choices and deliver customer-focused outcomes.</p>
+        <p>Well positioned for roles that combine <strong>people leadership, product &amp; delivery accountability, and technical direction.</strong></p>
       </div>
-      <div class="reveal-r dd2">
-        <div class="stats-bar">
-          <div class="sbar-item reveal dd1">
-            <div class="sbar-num" data-n="20" data-sfx="+">0</div>
-            <div class="sbar-lbl">Years of engineering experience</div>
-          </div>
-          <div class="sbar-item reveal dd2">
-            <div class="sbar-num" data-n="8" data-sfx="+">0</div>
-            <div class="sbar-lbl">Years at Vitality Health UK</div>
-          </div>
-          <div class="sbar-item reveal dd3">
-            <div class="sbar-num" data-n="14" data-sfx="">0</div>
-            <div class="sbar-lbl">Engineers coached &amp; led</div>
-          </div>
-        </div>
+      <div class="principles">
+        <div class="principle rv d1"><h4>Coach, don't command</h4><p>Continuous feedback, goal setting and mentoring that grows engineers into owners.</p></div>
+        <div class="principle rv d2"><h4>Clarity beats ambiguity</h4><p>Translating fuzzy business needs into outcome-focused technical direction.</p></div>
+        <div class="principle rv d3"><h4>Standards raise confidence</h4><p>Quality gates, testing strategy and CI/CD that de-risk every release.</p></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════════════ SKILLS – horizontal scroll ══════════════ -->
-<section id="skills">
-  <div class="skills-sticky" id="skills-sticky">
-    <div class="skills-head reveal">
-      <div class="eyebrow">Capabilities</div>
-      <div class="sec-title">Skills &amp; <span style="color:var(--indigo)">expertise</span></div>
-    </div>
-    <div class="skills-track-wrap">
-      <div class="skills-track" id="skills-track">
+  <!-- SKILLS / DIALS -->
+  <section id="skills" class="wrap">
+    <div class="eyebrow rv">02 · Instrumentation</div>
+    <h2 class="rv">Core capability dials</h2>
+    <p class="lede rv d1">A live read on where two decades of engineering have compounded — calibrated to current depth and daily practice.</p>
 
-        <div class="skill-card">
-          <div class="sc-ring">
-            <svg viewBox="0 0 90 90" width="90" height="90">
-              <circle class="sc-ring-bg" cx="45" cy="45" r="39.3"/>
-              <circle class="sc-ring-fg" cx="45" cy="45" r="39.3" style="stroke:var(--indigo)" data-pct="95"/>
-            </svg>
-            <div class="sc-ring-val" style="color:var(--indigo)">95</div>
-          </div>
-          <!-- Kotlin K-triangle logo -->
-          <svg class="sc-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs><linearGradient id="kg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#818cf8"/><stop offset="100%" stop-color="#22d3ee"/></linearGradient></defs>
-            <path d="M3 3h16L36 22v11H20L3 36V3z" fill="url(#kg1)" opacity=".18"/>
-            <path d="M3 3h16L36 22v11H20L3 36V3z" stroke="url(#kg1)" stroke-width="1.5" stroke-linejoin="round"/>
-            <path d="M3 3l15 15-8 9L3 36" stroke="url(#kg1)" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <div class="skill-card-title">Kotlin / Android</div>
-          <div class="skill-card-sub">Mobile engineering depth</div>
-          <div class="skill-tags"><span>Kotlin</span><span>Android SDK</span><span>Room</span><span>Retrofit</span></div>
-        </div>
+    <div class="dials" id="dials"></div>
 
-        <div class="skill-card">
-          <div class="sc-ring">
-            <svg viewBox="0 0 90 90" width="90" height="90">
-              <circle class="sc-ring-bg" cx="45" cy="45" r="39.3"/>
-              <circle class="sc-ring-fg" cx="45" cy="45" r="39.3" style="stroke:var(--cyan)" data-pct="92"/>
-            </svg>
-            <div class="sc-ring-val" style="color:var(--cyan)">92</div>
-          </div>
-          <!-- Stacked layers – mobile architecture -->
-          <svg class="sc-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="3" y="25" width="30" height="8" rx="2.5" fill="#22d3ee" opacity=".18" stroke="#22d3ee" stroke-width="1.4"/>
-            <rect x="3" y="14" width="30" height="8" rx="2.5" fill="#22d3ee" opacity=".38" stroke="#22d3ee" stroke-width="1.4"/>
-            <rect x="3" y="3" width="30" height="8" rx="2.5" fill="#22d3ee" opacity=".65" stroke="#22d3ee" stroke-width="1.4"/>
-            <line x1="9" y1="7" x2="14" y2="7" stroke="#04040a" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
-            <line x1="9" y1="18" x2="14" y2="18" stroke="#04040a" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
-            <line x1="9" y1="29" x2="14" y2="29" stroke="#04040a" stroke-width="1.5" stroke-linecap="round" opacity=".6"/>
-          </svg>
-          <div class="skill-card-title">Mobile Architecture</div>
-          <div class="skill-card-sub">Modern patterns &amp; design</div>
-          <div class="skill-tags"><span>MVVM</span><span>Jetpack Compose</span><span>Hilt</span><span>Modularisation</span></div>
-        </div>
+    <div class="bars" id="bars"></div>
+  </section>
 
-        <div class="skill-card">
-          <div class="sc-ring">
-            <svg viewBox="0 0 90 90" width="90" height="90">
-              <circle class="sc-ring-bg" cx="45" cy="45" r="39.3"/>
-              <circle class="sc-ring-fg" cx="45" cy="45" r="39.3" style="stroke:var(--green)" data-pct="90"/>
-            </svg>
-            <div class="sc-ring-val" style="color:var(--green)">90</div>
-          </div>
-          <!-- Team / leadership people icon -->
-          <svg class="sc-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="18" cy="10" r="5.5" fill="#4ade80" opacity=".2" stroke="#4ade80" stroke-width="1.5"/>
-            <path d="M8 33c0-5.5 4.5-10 10-10s10 4.5 10 10" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-            <circle cx="7" cy="15" r="3.5" fill="#4ade80" opacity=".15" stroke="#4ade80" stroke-width="1.2"/>
-            <path d="M1 33c0-3.8 2.7-7 6.5-7" stroke="#4ade80" stroke-width="1.2" stroke-linecap="round" fill="none" opacity=".7"/>
-            <circle cx="29" cy="15" r="3.5" fill="#4ade80" opacity=".15" stroke="#4ade80" stroke-width="1.2"/>
-            <path d="M35 33c0-3.8-2.7-7-6.5-7" stroke="#4ade80" stroke-width="1.2" stroke-linecap="round" fill="none" opacity=".7"/>
-          </svg>
-          <div class="skill-card-title">Eng. Leadership</div>
-          <div class="skill-card-sub">Coaching &amp; team growth</div>
-          <div class="skill-tags"><span>Coaching</span><span>Mentoring</span><span>1:1s</span><span>Feedback</span></div>
-        </div>
+  <!-- EXPERIENCE -->
+  <section id="experience" class="wrap">
+    <div class="eyebrow rv">03 · Trajectory</div>
+    <h2 class="rv">Two decades of delivery</h2>
 
-        <div class="skill-card">
-          <div class="sc-ring">
-            <svg viewBox="0 0 90 90" width="90" height="90">
-              <circle class="sc-ring-bg" cx="45" cy="45" r="39.3"/>
-              <circle class="sc-ring-fg" cx="45" cy="45" r="39.3" style="stroke:var(--amber)" data-pct="88"/>
-            </svg>
-            <div class="sc-ring-val" style="color:var(--amber)">88</div>
-          </div>
-          <!-- CI/CD pipeline loop with checkmark -->
-          <svg class="sc-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 5a13 13 0 0 1 13 13" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/>
-            <path d="M31 18a13 13 0 0 1-13 13" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/>
-            <path d="M18 31a13 13 0 0 1-13-13" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/>
-            <path d="M5 18a13 13 0 0 1 13-13" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" opacity=".25"/>
-            <polyline points="26,8 30,13 25.5,14.5" fill="none" stroke="#fbbf24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M13 18.5l3.5 3.5 6.5-7" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <div class="skill-card-title">CI/CD &amp; DevOps</div>
-          <div class="skill-card-sub">Quality &amp; delivery pipelines</div>
-          <div class="skill-tags"><span>Jenkins</span><span>Octopus</span><span>Jacoco</span><span>Ktlint</span></div>
-        </div>
+    <div class="timeline">
 
-        <div class="skill-card">
-          <div class="sc-ring">
-            <svg viewBox="0 0 90 90" width="90" height="90">
-              <circle class="sc-ring-bg" cx="45" cy="45" r="39.3"/>
-              <circle class="sc-ring-fg" cx="45" cy="45" r="39.3" style="stroke:var(--fuchsia)" data-pct="88"/>
-            </svg>
-            <div class="sc-ring-val" style="color:var(--fuchsia)">88</div>
-          </div>
-          <!-- Network nodes – system design -->
-          <svg class="sc-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="18" cy="18" r="4" fill="#e879f9" opacity=".2" stroke="#e879f9" stroke-width="1.5"/>
-            <circle cx="5"  cy="9"  r="3" fill="#e879f9" opacity=".15" stroke="#e879f9" stroke-width="1.2"/>
-            <circle cx="31" cy="9"  r="3" fill="#e879f9" opacity=".15" stroke="#e879f9" stroke-width="1.2"/>
-            <circle cx="5"  cy="27" r="3" fill="#e879f9" opacity=".15" stroke="#e879f9" stroke-width="1.2"/>
-            <circle cx="31" cy="27" r="3" fill="#e879f9" opacity=".15" stroke="#e879f9" stroke-width="1.2"/>
-            <line x1="8"  y1="10.5" x2="14.5" y2="15.5" stroke="#e879f9" stroke-width="1" opacity=".55"/>
-            <line x1="28" y1="10.5" x2="21.5" y2="15.5" stroke="#e879f9" stroke-width="1" opacity=".55"/>
-            <line x1="8"  y1="25.5" x2="14.5" y2="20.5" stroke="#e879f9" stroke-width="1" opacity=".55"/>
-            <line x1="28" y1="25.5" x2="21.5" y2="20.5" stroke="#e879f9" stroke-width="1" opacity=".55"/>
-          </svg>
-          <div class="skill-card-title">System Design</div>
-          <div class="skill-card-sub">Scalable architecture</div>
-          <div class="skill-tags"><span>GraphQL</span><span>APIs</span><span>OpenID SSO</span><span>Integration</span></div>
-        </div>
-
-        <div class="skill-card">
-          <div class="sc-ring">
-            <svg viewBox="0 0 90 90" width="90" height="90">
-              <circle class="sc-ring-bg" cx="45" cy="45" r="39.3"/>
-              <circle class="sc-ring-fg" cx="45" cy="45" r="39.3" style="stroke:#fb7185" data-pct="80"/>
-            </svg>
-            <div class="sc-ring-val" style="color:#fb7185">80</div>
-          </div>
-          <!-- Code terminal / backend icon -->
-          <svg class="sc-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="5" width="32" height="26" rx="4.5" fill="#fb7185" opacity=".1" stroke="#fb7185" stroke-width="1.5"/>
-            <line x1="2" y1="13" x2="34" y2="13" stroke="#fb7185" stroke-width="1" opacity=".3"/>
-            <circle cx="7.5" cy="9" r="1.5" fill="#fb7185" opacity=".6"/>
-            <circle cx="12" cy="9" r="1.5" fill="#fb7185" opacity=".4"/>
-            <circle cx="16.5" cy="9" r="1.5" fill="#fb7185" opacity=".25"/>
-            <path d="M10 21l-4 3 4 3" stroke="#fb7185" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M26 21l4 3-4 3" stroke="#fb7185" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <line x1="20" y1="19" x2="16" y2="29" stroke="#fb7185" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          <div class="skill-card-title">Backend &amp; Integration</div>
-          <div class="skill-card-sub">Enterprise stack depth</div>
-          <div class="skill-tags"><span>C# / .NET</span><span>Node.js</span><span>SQL Server</span><span>TypeScript</span></div>
-        </div>
-
-      </div>
-    </div>
-    <div class="h-scroll-hint" id="scroll-hint">
-      Scroll to explore
-      <svg width="22" height="10" viewBox="0 0 22 10" fill="none">
-        <path d="M1 5h20M15 1l6 4-6 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ EXPERIENCE ══════════════ -->
-<section id="experience" class="section">
-  <div class="section-inner">
-    <div class="reveal">
-      <div class="eyebrow">Career</div>
-      <div class="sec-title">20 years of <span style="color:var(--indigo)">impact.</span></div>
-      <p class="sec-sub">From enterprise systems in Brazil to leading mobile delivery at UK health-tech scale.</p>
-    </div>
-
-    <div class="exp-layout">
-      <!-- animated vertical line -->
-      <div class="tl-svg">
-        <svg width="24" height="800" id="tl-svg">
-          <path id="tl-line" d="M12 0 L12 800" stroke="url(#tlg)" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <defs>
-            <linearGradient id="tlg" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#818cf8"/>
-              <stop offset="100%" stop-color="#22d3ee"/>
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-
-      <!-- exp items -->
-      <div class="tl-item reveal dd1">
-        <div class="tl-dot-wrap">
-          <div class="tl-dot" style="background:var(--indigo);box-shadow:0 0 0 4px rgba(129,140,248,.15)"></div>
-        </div>
-        <div class="tl-card">
-          <div class="tl-when">AUG 2017 — PRESENT &nbsp;·&nbsp; 8+ YEARS</div>
-          <div class="tl-role">Principal Software Engineer</div>
-          <div class="tl-co">Vitality Health Insurance UK · Bournemouth, UK</div>
-          <ul class="tl-pts">
-            <li>Partnered with PMs, architects &amp; stakeholders to translate ambiguous business needs into scalable solutions and delivery plans.</li>
-            <li>Guided modern mobile architecture — modularisation, MVVM, Jetpack Compose — reducing technical debt significantly.</li>
-            <li>Raised engineering standards via Ktlint, Jacoco, automated testing and shared quality benchmarks.</li>
-            <li>Led technical conversations on trade-offs, OpenID SSO and new GraphQL API integrations with senior stakeholders.</li>
-            <li>Led a pod of <strong>14 engineers</strong> through a major delivery cycle with coaching, feedback loops and KT sessions.</li>
+      <div class="t-item rv">
+        <span class="t-date">Aug 2017 — Present · 8+ yrs</span>
+        <h3>Vitality Health Insurance UK</h3>
+        <p class="t-role">Principal Software Engineer · Engineering Leadership &amp; Delivery Focus · Bournemouth</p>
+        <div class="t-card">
+          <ul>
+            <li><strong>Led a pod of 14 engineers</strong> through a major delivery cycle — knowledge-transfer sessions, feedback loops and coaching conversations supporting individual growth and team inclusivity.</li>
+            <li><strong>Technical direction</strong> for cross-functional teams: modularisation, MVVM and Jetpack Compose to reduce technical debt and improve long-term platform maintainability.</li>
+            <li><strong>Raised engineering standards</strong> with shared quality benchmarks, Ktlint, Jacoco coverage and automated testing — increasing delivery confidence and reducing release risk.</li>
+            <li><strong>Senior stakeholder communication</strong> on trade-offs and priorities, including critical OpenID single sign-on and GraphQL API integrations.</li>
+            <li><strong>Solution shaping</strong> with architects and requirements engineers: evaluating options, identifying risk, defining practical implementation paths.</li>
           </ul>
-          <div class="tl-chips"><i>Kotlin</i><i>Android</i><i>Jetpack Compose</i><i>MVVM</i><i>Hilt</i><i>GraphQL</i><i>OpenID SSO</i><i>CI/CD</i><i>Firebase</i></div>
+          <div class="t-chips"><span class="chip">Kotlin</span><span class="chip">Jetpack Compose</span><span class="chip">GraphQL</span><span class="chip">OpenID SSO</span><span class="chip">CI/CD</span><span class="chip">Team Leadership</span></div>
         </div>
       </div>
 
-      <div class="tl-item reveal dd2">
-        <div class="tl-dot-wrap">
-          <div class="tl-dot" style="background:var(--cyan);box-shadow:0 0 0 4px rgba(34,211,238,.15)"></div>
-        </div>
-        <div class="tl-card">
-          <div class="tl-when">JAN 2016 — FEB 2017</div>
-          <div class="tl-role">.NET Software Developer — Global Systems</div>
-          <div class="tl-co">Iron Mountain · São Paulo, Brazil</div>
-          <ul class="tl-pts">
-            <li>Integrated enterprise solutions between Bank of America and internal storage systems using C# &amp; T-SQL.</li>
-            <li>Supported reliability through critical business transitions with distributed international stakeholders.</li>
+      <div class="t-item alt rv">
+        <span class="t-date">Jan 2016 — Feb 2017</span>
+        <h3>Iron Mountain</h3>
+        <p class="t-role">.NET Software Developer · Global Systems · São Paulo, Brazil</p>
+        <div class="t-card">
+          <ul>
+            <li><strong>Enterprise integration</strong> across C# and T-SQL between Bank of America and internal storage systems — supporting reliability through critical business transitions.</li>
+            <li><strong>Distributed collaboration</strong> with global stakeholders to clarify requirements and align integration outcomes with operational needs.</li>
           </ul>
-          <div class="tl-chips"><i>C#</i><i>.NET</i><i>T-SQL</i><i>Enterprise Integration</i></div>
+          <div class="t-chips"><span class="chip">C#</span><span class="chip">T-SQL</span><span class="chip">Enterprise Integration</span></div>
         </div>
       </div>
 
-      <div class="tl-item reveal dd3">
-        <div class="tl-dot-wrap">
-          <div class="tl-dot" style="background:var(--fuchsia);box-shadow:0 0 0 4px rgba(232,121,249,.15)"></div>
-        </div>
-        <div class="tl-card">
-          <div class="tl-when">AUG 2015 — JAN 2016</div>
-          <div class="tl-role">Business Analyst — Delivery Strategy</div>
-          <div class="tl-co">Entelgy Brasil · São Paulo, Brazil</div>
-          <ul class="tl-pts">
-            <li>Translated complex stakeholder requirements into actionable technical specs using UML &amp; Scrum.</li>
-            <li>Bridged business and engineering to clarify scope and improve delivery focus.</li>
+      <div class="t-item rv">
+        <span class="t-date">Aug 2015 — Jan 2016</span>
+        <h3>Entelgy Brasil</h3>
+        <p class="t-role">Business Analyst · Delivery Strategy · São Paulo, Brazil</p>
+        <div class="t-card">
+          <ul>
+            <li><strong>Requirements engineering</strong> at the business–technology interface: complex stakeholder needs translated into actionable specifications with UML and Scrum.</li>
+            <li><strong>Cross-functional alignment</strong> — clarifying scope, reducing ambiguity, sharpening delivery focus.</li>
           </ul>
-          <div class="tl-chips"><i>UML</i><i>Scrum</i><i>Requirements Engineering</i><i>Business Analysis</i></div>
+          <div class="t-chips"><span class="chip">UML</span><span class="chip">Scrum</span><span class="chip">Requirements</span></div>
         </div>
       </div>
 
-      <div class="tl-item reveal dd4">
-        <div class="tl-dot-wrap">
-          <div class="tl-dot" style="background:var(--amber);box-shadow:0 0 0 4px rgba(251,191,36,.15)"></div>
-        </div>
-        <div class="tl-card">
-          <div class="tl-when">2006 — 2015 &nbsp;·&nbsp; VERSA IT · CIATECH · ACCENTURE</div>
-          <div class="tl-role">Senior Software Engineer &amp; Technical Lead</div>
-          <div class="tl-co">Various organisations · Brazil</div>
-          <ul class="tl-pts">
-            <li>Progressed through engineering and senior technical roles on large-scale .NET/C# system analysis and delivery.</li>
-            <li>Mentored junior developers, contributed to architectural integrity and upheld code quality standards at Accenture and beyond.</li>
+      <div class="t-item alt rv">
+        <span class="t-date">2006 — 2015</span>
+        <h3>Versa IT · Ciatech · Accenture &amp; earlier</h3>
+        <p class="t-role">Software Engineer → Senior Technical Roles · Brazil</p>
+        <div class="t-card">
+          <ul>
+            <li>Progression through engineering and senior roles: large-scale system analysis, .NET/C# development and enterprise delivery.</li>
+            <li><strong>Mentored junior developers</strong>, safeguarded architectural integrity and drove code quality through reviews and development standards.</li>
           </ul>
-          <div class="tl-chips"><i>C# / .NET</i><i>System Analysis</i><i>Architecture</i><i>Mentoring</i><i>Accenture</i></div>
+          <div class="t-chips"><span class="chip">.NET</span><span class="chip">System Analysis</span><span class="chip">Mentoring</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack" class="wrap">
+    <div class="eyebrow rv">04 · Toolchain</div>
+    <h2 class="rv">Full technical surface</h2>
+    <div class="stack-grid">
+      <div class="stack-card c1 rv d1">
+        <div class="ico">/// Mobile &amp; Architecture</div>
+        <h3>The platform craft</h3>
+        <div class="t-chips">
+          <span class="chip">Kotlin</span><span class="chip">Android</span><span class="chip">Jetpack Compose</span><span class="chip">XML Layouts</span><span class="chip">MVVM</span><span class="chip">Hilt / Dagger</span><span class="chip">Retrofit</span><span class="chip">OkHttp</span><span class="chip">Apollo GraphQL</span><span class="chip">Room</span><span class="chip">SQLCipher</span><span class="chip">Modularisation</span>
+        </div>
+      </div>
+      <div class="stack-card c2 rv d2">
+        <div class="ico">/// Quality &amp; DevOps</div>
+        <h3>The safety net</h3>
+        <div class="t-chips">
+          <span class="chip">CI/CD Pipelines</span><span class="chip">Jenkins</span><span class="chip">Octopus</span><span class="chip">Jacoco</span><span class="chip">Ktlint</span><span class="chip">Firebase Analytics</span><span class="chip">Crashlytics</span><span class="chip">Dynatrace</span><span class="chip">JUnit</span><span class="chip">Mockito</span><span class="chip">Espresso</span><span class="chip">Compose UI Test</span>
+        </div>
+      </div>
+      <div class="stack-card c3 rv d3">
+        <div class="ico">/// Engineering Depth</div>
+        <h3>The foundations</h3>
+        <div class="t-chips">
+          <span class="chip">C# / .NET</span><span class="chip">Node.js</span><span class="chip">TypeScript</span><span class="chip">SQL Server</span><span class="chip">Oracle DB</span><span class="chip">APIs</span><span class="chip">Distributed Systems</span><span class="chip">System Integration</span><span class="chip">Backend Engineering</span>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════════════ LEADERSHIP ══════════════ -->
-<section id="leadership" class="section">
-  <div class="section-inner">
-    <div class="reveal">
-      <div class="eyebrow">Leadership</div>
-      <div class="sec-title">What I bring<br>to a <span style="color:var(--cyan)">team.</span></div>
-      <p class="sec-sub">Clarity, trust and engineering excellence — the foundations of teams that ship and grow.</p>
-    </div>
-    <div class="lead-grid">
-      <div class="lead-card reveal dd1" data-tilt>
-        <div class="lead-n">01</div><span class="lead-icon">🎯</span>
-        <div class="lead-title">Delivery Clarity</div>
-        <div class="lead-body">Turning ambiguous goals into concrete plans, removing blockers and maintaining team momentum through complexity.</div>
-      </div>
-      <div class="lead-card reveal dd2" data-tilt>
-        <div class="lead-n">02</div><span class="lead-icon">🌱</span>
-        <div class="lead-title">Coaching &amp; Growth</div>
-        <div class="lead-body">Feedback loops, knowledge transfer and 1:1s that grow engineers in technical depth and professional maturity.</div>
-      </div>
-      <div class="lead-card reveal dd3" data-tilt>
-        <div class="lead-n">03</div><span class="lead-icon">⚒️</span>
-        <div class="lead-title">Technical Excellence</div>
-        <div class="lead-body">Raising quality bars with shared standards, constructive code review and meaningful automation.</div>
-      </div>
-      <div class="lead-card reveal dd4" data-tilt>
-        <div class="lead-n">04</div><span class="lead-icon">🤝</span>
-        <div class="lead-title">Cross-functional Partnership</div>
-        <div class="lead-body">Deep collaboration with Product, architects and requirements engineering to shape business-aligned solutions.</div>
-      </div>
-      <div class="lead-card reveal dd5" data-tilt>
-        <div class="lead-n">05</div><span class="lead-icon">🔍</span>
-        <div class="lead-title">Constructive Challenge</div>
-        <div class="lead-body">Questioning assumptions thoughtfully while preserving psychological safety and team ownership.</div>
-      </div>
-      <div class="lead-card reveal dd6" data-tilt>
-        <div class="lead-n">06</div><span class="lead-icon">🏛️</span>
-        <div class="lead-title">Architecture &amp; Vision</div>
-        <div class="lead-body">Evaluating options and defining practical paths toward long-term platform sustainability.</div>
+  <!-- EDUCATION + CONTACT -->
+  <section id="contact" class="wrap">
+    <div class="contact rv">
+      <div class="eyebrow" style="justify-content:center">05 · Connect</div>
+      <h2>Let's build the next thing.</h2>
+      <p>BSc Information Systems (Centro Universitário Padre Anchieta) · Technical Degree in IT (Escola Técnica Vasco Venchiarutti). Based in Bournemouth, Dorset — open to Engineering Manager opportunities.</p>
+      <div class="links">
+        <a class="btn primary" href="mailto:leandro.raveli@gmail.com">Email me</a>
+        <a class="btn ghost" href="tel:+447467414887">+44 07467 414887</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══════════════ EDUCATION ══════════════ -->
-<section id="education" class="section">
-  <div class="section-inner">
-    <div class="reveal">
-      <div class="eyebrow">Education</div>
-      <div class="sec-title">Academic<br><span style="color:var(--fuchsia)">foundation.</span></div>
-    </div>
-    <div class="edu-grid">
-      <div class="edu-card reveal dd1">
-        <div class="edu-ico">🎓</div>
-        <div>
-          <div class="edu-deg">Bachelor's Degree in Information Systems</div>
-          <div class="edu-school">Centro Universitário Padre Anchieta</div>
-          <div class="edu-type">Bachelor's Degree · Information Systems</div>
-        </div>
-      </div>
-      <div class="edu-card reveal dd2">
-        <div class="edu-ico">🖥️</div>
-        <div>
-          <div class="edu-deg">Technical Degree in Information Technology</div>
-          <div class="edu-school">Escola Técnica Vasco Venchiarutti</div>
-          <div class="edu-type">Technical Certification · IT Systems</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ TECH STACK BAND ══════════════ -->
-<section id="stack">
-  <div class="stack-ticker">
-    <!-- ── first set ── -->
-    <div class="ti">
-      <!-- Kotlin K-triangle -->
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><path d="M2 2h9.5L20 11l-8.5 9H2V2z" fill="#818cf8" opacity=".2" stroke="#818cf8" stroke-width="1.3" stroke-linejoin="round"/><path d="M2 2l9.5 9.5-5.5 6.5" stroke="#818cf8" stroke-width="1.6" stroke-linecap="round"/></svg>
-      <span class="ti-name">Kotlin</span>
-    </div>
-    <div class="ti">
-      <!-- Android robot head -->
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><line x1="7" y1="6" x2="5" y2="2.5" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round"/><line x1="15" y1="6" x2="17" y2="2.5" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round"/><path d="M3 9.5a8 8 0 0 1 16 0v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6z" fill="#4ade80" opacity=".8"/><circle cx="8" cy="12" r="1.2" fill="#04040a"/><circle cx="14" cy="12" r="1.2" fill="#04040a"/></svg>
-      <span class="ti-name">Android</span>
-    </div>
-    <div class="ti">
-      <!-- Jetpack Compose – 3D diamond/cube -->
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><path d="M11 2l9 4.5v9L11 20l-9-4.5v-9L11 2z" fill="#22d3ee" opacity=".12" stroke="#22d3ee" stroke-width="1.3" stroke-linejoin="round"/><line x1="11" y1="2" x2="11" y2="20" stroke="#22d3ee" stroke-width="1"/><line x1="2" y1="6.5" x2="20" y2="15.5" stroke="#22d3ee" stroke-width="1"/><line x1="2" y1="15.5" x2="20" y2="6.5" stroke="#22d3ee" stroke-width="1"/></svg>
-      <span class="ti-name">Jetpack Compose</span>
-    </div>
-    <div class="ti">
-      <!-- Hilt/Dagger – shield with checkmark (DI protection) -->
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><path d="M11 2l8 3.5v6c0 4.5-3.5 7.5-8 8.5C6 19 2 16 2 11.5v-6L11 2z" fill="#e879f9" opacity=".12" stroke="#e879f9" stroke-width="1.3" stroke-linejoin="round"/><path d="M7.5 11l2.5 2.5 4.5-5" stroke="#e879f9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span class="ti-name">Hilt / Dagger</span>
-    </div>
-    <div class="ti">
-      <!-- GraphQL – hexagonal asterisk -->
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><path d="M11 1l8.7 5v10L11 21l-8.7-5V6L11 1z" stroke="#e879f9" stroke-width="1.2" stroke-linejoin="round"/><line x1="11" y1="3" x2="11" y2="19" stroke="#e879f9" stroke-width="1.2"/><line x1="3.4" y1="7" x2="18.6" y2="15" stroke="#e879f9" stroke-width="1.2"/><line x1="3.4" y1="15" x2="18.6" y2="7" stroke="#e879f9" stroke-width="1.2"/></svg>
-      <span class="ti-name">Apollo GraphQL</span>
-    </div>
-    <div class="ti">
-      <!-- Jenkins – gear/cog -->
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><path d="M9 2.2c.1-.6.6-1 1.2-1h1.6c.6 0 1.1.4 1.2 1l.3 1.3a7 7 0 011.4.8l1.3-.4c.6-.2 1.2.1 1.5.6l.8 1.4c.3.5.2 1.1-.2 1.5l-1 .9a7.5 7.5 0 010 1.6l1 .9c.4.4.5 1 .2 1.5l-.8 1.4c-.3.5-.9.8-1.5.6l-1.3-.4a7 7 0 01-1.4.8l-.3 1.3c-.1.6-.6 1-1.2 1H9.2c-.6 0-1.1-.4-1.2-1l-.3-1.3a7 7 0 01-1.4-.8l-1.3.4c-.6.2-1.2-.1-1.5-.6l-.8-1.4c-.3-.5-.2-1.1.2-1.5l1-.9a7.5 7.5 0 010-1.6l-1-.9c-.4-.4-.5-1-.2-1.5l.8-1.4c.3-.5.9-.8 1.5-.6l1.3.4a7 7 0 011.4-.8L9 2.2z" fill="#fbbf24" opacity=".15" stroke="#fbbf24" stroke-width="1.2" stroke-linejoin="round"/><circle cx="11" cy="11" r="2.8" stroke="#fbbf24" stroke-width="1.2"/></svg>
-      <span class="ti-name">Jenkins</span>
-    </div>
-    <div class="ti">
-      <!-- Firebase – flame -->
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><path d="M6 20c0 0 1.5-5 3-8-1 1-3 1.5-4 0C3.5 10 5 6 7 4c0 2 1 3 2 3-1-3 1-7 4-7 0 4 2 5.5 3 7 1-1.5 1-4 0-5.5 3 2 4 8 2 11 1-1 1.5-3 1-4.5 2 2 2 7-1 10H6z" fill="#f97316" opacity=".25" stroke="#f97316" stroke-width="1.2" stroke-linejoin="round"/><path d="M8 20c0 0 1-3 2-5-1 1-2.5 1-3 0C6.5 13 8 11 9 10c0 1.2.8 2 1.5 2C9.5 10 11 8 13 8c0 2.5 1.5 3.5 2 5 .5-1 .5-2.5 0-3.5C17 11 17 15 15 18c.8-.5 1-2 .8-3C17.5 17 17 20 14 22H8c-.5-.5-0-1.5 0-2z" fill="#f97316" opacity=".7" stroke="#f97316" stroke-width="1"/></svg>
-      <span class="ti-name">Firebase</span>
-    </div>
-    <div class="ti">
-      <!-- C# – hash symbol in rounded box -->
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><rect x="1.5" y="1.5" width="19" height="19" rx="4" fill="#818cf8" opacity=".12" stroke="#818cf8" stroke-width="1.2"/><line x1="8" y1="6" x2="7" y2="16" stroke="#818cf8" stroke-width="1.6" stroke-linecap="round"/><line x1="12" y1="6" x2="11" y2="16" stroke="#818cf8" stroke-width="1.6" stroke-linecap="round"/><line x1="6" y1="9.5" x2="14" y2="9.5" stroke="#818cf8" stroke-width="1.4" stroke-linecap="round"/><line x1="5.5" y1="12.5" x2="13.5" y2="12.5" stroke="#818cf8" stroke-width="1.4" stroke-linecap="round"/></svg>
-      <span class="ti-name">C# / .NET</span>
-    </div>
-    <div class="ti">
-      <!-- TypeScript – TS in blue rounded box -->
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><rect x="1.5" y="1.5" width="19" height="19" rx="4" fill="#22d3ee" opacity=".15" stroke="#22d3ee" stroke-width="1.2"/><line x1="5.5" y1="8" x2="11.5" y2="8" stroke="#22d3ee" stroke-width="1.8" stroke-linecap="round"/><line x1="8.5" y1="8" x2="8.5" y2="16" stroke="#22d3ee" stroke-width="1.8" stroke-linecap="round"/><path d="M12.5 13.5c0-1 .8-2 2.5-2s2.5 1 2.5 2-1 1.8-2.5 2.3-2.5 1-2.5 2.2 1 2 2.5 2 2.5-.8 2.5-2" stroke="#22d3ee" stroke-width="1.5" stroke-linecap="round"/></svg>
-      <span class="ti-name">TypeScript</span>
-    </div>
-    <div class="ti">
-      <!-- Node.js – N in hexagon -->
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><path d="M11 2l8.7 5v10L11 21l-8.7-5V7L11 2z" fill="#4ade80" opacity=".12" stroke="#4ade80" stroke-width="1.3" stroke-linejoin="round"/><path d="M7.5 8v6l3.5-3 3.5 3V8" stroke="#4ade80" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span class="ti-name">Node.js</span>
-    </div>
-    <div class="ti">
-      <!-- Jacoco – coverage bars chart -->
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><rect x="2" y="15" width="4" height="5" rx="1" fill="#fbbf24" opacity=".7"/><rect x="8" y="10" width="4" height="10" rx="1" fill="#fbbf24" opacity=".85"/><rect x="14" y="5" width="4" height="15" rx="1" fill="#fbbf24"/><line x1="1" y1="20.5" x2="21" y2="20.5" stroke="#fbbf24" stroke-width="1" opacity=".4"/><path d="M2 14l6-4 6 3 4-7" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/></svg>
-      <span class="ti-name">Jacoco</span>
-    </div>
-    <div class="ti">
-      <!-- Dynatrace – monitoring / D-wave icon -->
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><path d="M4 11c0-3.9 3.1-7 7-7s7 3.1 7 7-3.1 7-7 7" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round"/><path d="M7 11c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4" stroke="#818cf8" stroke-width="1.3" stroke-linecap="round" opacity=".65"/><circle cx="11" cy="11" r="2" fill="#818cf8" opacity=".8"/><line x1="4" y1="18" x2="7" y2="18" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round" opacity=".4"/></svg>
-      <span class="ti-name">Dynatrace</span>
-    </div>
-    <!-- ── duplicate set for seamless loop ── -->
-    <div class="ti">
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><path d="M2 2h9.5L20 11l-8.5 9H2V2z" fill="#818cf8" opacity=".2" stroke="#818cf8" stroke-width="1.3" stroke-linejoin="round"/><path d="M2 2l9.5 9.5-5.5 6.5" stroke="#818cf8" stroke-width="1.6" stroke-linecap="round"/></svg>
-      <span class="ti-name">Kotlin</span>
-    </div>
-    <div class="ti">
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><line x1="7" y1="6" x2="5" y2="2.5" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round"/><line x1="15" y1="6" x2="17" y2="2.5" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round"/><path d="M3 9.5a8 8 0 0 1 16 0v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6z" fill="#4ade80" opacity=".8"/><circle cx="8" cy="12" r="1.2" fill="#04040a"/><circle cx="14" cy="12" r="1.2" fill="#04040a"/></svg>
-      <span class="ti-name">Android</span>
-    </div>
-    <div class="ti">
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><path d="M11 2l9 4.5v9L11 20l-9-4.5v-9L11 2z" fill="#22d3ee" opacity=".12" stroke="#22d3ee" stroke-width="1.3" stroke-linejoin="round"/><line x1="11" y1="2" x2="11" y2="20" stroke="#22d3ee" stroke-width="1"/><line x1="2" y1="6.5" x2="20" y2="15.5" stroke="#22d3ee" stroke-width="1"/><line x1="2" y1="15.5" x2="20" y2="6.5" stroke="#22d3ee" stroke-width="1"/></svg>
-      <span class="ti-name">Jetpack Compose</span>
-    </div>
-    <div class="ti">
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><path d="M11 2l8 3.5v6c0 4.5-3.5 7.5-8 8.5C6 19 2 16 2 11.5v-6L11 2z" fill="#e879f9" opacity=".12" stroke="#e879f9" stroke-width="1.3" stroke-linejoin="round"/><path d="M7.5 11l2.5 2.5 4.5-5" stroke="#e879f9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span class="ti-name">Hilt / Dagger</span>
-    </div>
-    <div class="ti">
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><path d="M11 1l8.7 5v10L11 21l-8.7-5V6L11 1z" stroke="#e879f9" stroke-width="1.2" stroke-linejoin="round"/><line x1="11" y1="3" x2="11" y2="19" stroke="#e879f9" stroke-width="1.2"/><line x1="3.4" y1="7" x2="18.6" y2="15" stroke="#e879f9" stroke-width="1.2"/><line x1="3.4" y1="15" x2="18.6" y2="7" stroke="#e879f9" stroke-width="1.2"/></svg>
-      <span class="ti-name">Apollo GraphQL</span>
-    </div>
-    <div class="ti">
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><path d="M9 2.2c.1-.6.6-1 1.2-1h1.6c.6 0 1.1.4 1.2 1l.3 1.3a7 7 0 011.4.8l1.3-.4c.6-.2 1.2.1 1.5.6l.8 1.4c.3.5.2 1.1-.2 1.5l-1 .9a7.5 7.5 0 010 1.6l1 .9c.4.4.5 1 .2 1.5l-.8 1.4c-.3.5-.9.8-1.5.6l-1.3-.4a7 7 0 01-1.4.8l-.3 1.3c-.1.6-.6 1-1.2 1H9.2c-.6 0-1.1-.4-1.2-1l-.3-1.3a7 7 0 01-1.4-.8l-1.3.4c-.6.2-1.2-.1-1.5-.6l-.8-1.4c-.3-.5-.2-1.1.2-1.5l1-.9a7.5 7.5 0 010-1.6l-1-.9c-.4-.4-.5-1-.2-1.5l.8-1.4c.3-.5.9-.8 1.5-.6l1.3.4a7 7 0 011.4-.8L9 2.2z" fill="#fbbf24" opacity=".15" stroke="#fbbf24" stroke-width="1.2" stroke-linejoin="round"/><circle cx="11" cy="11" r="2.8" stroke="#fbbf24" stroke-width="1.2"/></svg>
-      <span class="ti-name">Jenkins</span>
-    </div>
-    <div class="ti">
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><path d="M6 20c0 0 1.5-5 3-8-1 1-3 1.5-4 0C3.5 10 5 6 7 4c0 2 1 3 2 3-1-3 1-7 4-7 0 4 2 5.5 3 7 1-1.5 1-4 0-5.5 3 2 4 8 2 11 1-1 1.5-3 1-4.5 2 2 2 7-1 10H6z" fill="#f97316" opacity=".7" stroke="#f97316" stroke-width="1.2" stroke-linejoin="round"/></svg>
-      <span class="ti-name">Firebase</span>
-    </div>
-    <div class="ti">
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><rect x="1.5" y="1.5" width="19" height="19" rx="4" fill="#818cf8" opacity=".12" stroke="#818cf8" stroke-width="1.2"/><line x1="8" y1="6" x2="7" y2="16" stroke="#818cf8" stroke-width="1.6" stroke-linecap="round"/><line x1="12" y1="6" x2="11" y2="16" stroke="#818cf8" stroke-width="1.6" stroke-linecap="round"/><line x1="6" y1="9.5" x2="14" y2="9.5" stroke="#818cf8" stroke-width="1.4" stroke-linecap="round"/><line x1="5.5" y1="12.5" x2="13.5" y2="12.5" stroke="#818cf8" stroke-width="1.4" stroke-linecap="round"/></svg>
-      <span class="ti-name">C# / .NET</span>
-    </div>
-    <div class="ti">
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><rect x="1.5" y="1.5" width="19" height="19" rx="4" fill="#22d3ee" opacity=".15" stroke="#22d3ee" stroke-width="1.2"/><line x1="5.5" y1="8" x2="11.5" y2="8" stroke="#22d3ee" stroke-width="1.8" stroke-linecap="round"/><line x1="8.5" y1="8" x2="8.5" y2="16" stroke="#22d3ee" stroke-width="1.8" stroke-linecap="round"/><path d="M12.5 13.5c0-1 .8-2 2.5-2s2.5 1 2.5 2-1 1.8-2.5 2.3-2.5 1-2.5 2.2 1 2 2.5 2 2.5-.8 2.5-2" stroke="#22d3ee" stroke-width="1.5" stroke-linecap="round"/></svg>
-      <span class="ti-name">TypeScript</span>
-    </div>
-    <div class="ti">
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><path d="M11 2l8.7 5v10L11 21l-8.7-5V7L11 2z" fill="#4ade80" opacity=".12" stroke="#4ade80" stroke-width="1.3" stroke-linejoin="round"/><path d="M7.5 8v6l3.5-3 3.5 3V8" stroke="#4ade80" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span class="ti-name">Node.js</span>
-    </div>
-    <div class="ti">
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><rect x="2" y="15" width="4" height="5" rx="1" fill="#fbbf24" opacity=".7"/><rect x="8" y="10" width="4" height="10" rx="1" fill="#fbbf24" opacity=".85"/><rect x="14" y="5" width="4" height="15" rx="1" fill="#fbbf24"/><line x1="1" y1="20.5" x2="21" y2="20.5" stroke="#fbbf24" stroke-width="1" opacity=".4"/><path d="M2 14l6-4 6 3 4-7" stroke="#fbbf24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/></svg>
-      <span class="ti-name">Jacoco</span>
-    </div>
-    <div class="ti">
-      <svg class="ti-logo" viewBox="0 0 22 22" fill="none"><path d="M4 11c0-3.9 3.1-7 7-7s7 3.1 7 7-3.1 7-7 7" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round"/><path d="M7 11c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4" stroke="#818cf8" stroke-width="1.3" stroke-linecap="round" opacity=".65"/><circle cx="11" cy="11" r="2" fill="#818cf8" opacity=".8"/><line x1="4" y1="18" x2="7" y2="18" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round" opacity=".4"/></svg>
-      <span class="ti-name">Dynatrace</span>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ CONTACT ══════════════ -->
-<section id="contact">
-  <div class="contact-inner">
-    <div class="contact-grid">
-      <div class="reveal-l">
-        <div class="eyebrow">Contact</div>
-        <div class="cta-title">Let's build<br>something<br><span class="cta-grad">great.</span></div>
-        <p class="cta-sub">Available for Engineering Manager and senior technical leadership roles. Bournemouth based — open to remote &amp; hybrid.</p>
-        <a href="mailto:leandro.raveli@gmail.com" class="cta-btn">
-          Send me a message
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-      </div>
-      <div class="contact-links reveal-r dd2">
-        <a href="mailto:leandro.raveli@gmail.com" class="clink">
-          <span>✉️ &nbsp;leandro.raveli@gmail.com</span>
-          <span class="clink-arr">→</span>
-        </a>
-        <a href="tel:+4407467414887" class="clink">
-          <span>📞 &nbsp;+44 07467 414887</span>
-          <span class="clink-arr">→</span>
-        </a>
-        <a href="https://linkedin.com/in/leandroraveli" target="_blank" rel="noopener" class="clink">
-          <span>💼 &nbsp;linkedin.com/in/leandroraveli</span>
-          <span class="clink-arr">→</span>
-        </a>
-        <div class="clink">
-          <span>📍 &nbsp;Bournemouth, Dorset, UK</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+</main>
 
 <footer>
-  <div class="fb">Leandro <span>Raveli</span></div>
-  <div>Bournemouth, UK · 2026</div>
+  <span class="sig">val</span> nextChapter = <span class="sig">EngineeringManager</span>(leadWith = "intent") · © 2026 Leandro De Souza Raveli
 </footer>
 
-<button id="btt" onclick="scrollTo({top:0,behavior:'smooth'})">
-  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-</button>
-
 <script>
-// ─── SCROLL PROGRESS + NAV + BTT ───────────────────────────
-const spbar=document.getElementById('spbar');
-const topnav=document.getElementById('topnav');
-const btt=document.getElementById('btt');
-let ticking=false;
-
-window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(onScroll);ticking=true}},{passive:true});
-
-function onScroll(){
-  ticking=false;
-  const sc=scrollY, h=document.documentElement, max=h.scrollHeight-h.clientHeight;
-  spbar.style.width=(sc/max*100)+'%';
-  topnav.classList.toggle('s',sc>40);
-  btt.classList.toggle('show',sc>600);
-  updateDots(sc);
-  updateParallax(sc);
-  updateHScroll(sc);
-  updateTimeline(sc);
-}
-
-// ─── TYPEWRITER ────────────────────────────────────────────
 (function(){
-  const el=document.getElementById('tw');
-  const W=['Principal Software Engineer','Engineering Manager Candidate','Mobile Architect','Technical Leader'];
-  let w=0,c=0,d=false;
-  (function t(){
-    el.textContent=W[w].slice(0,c);
-    if(!d){c++;if(c>W[w].length){d=true;return setTimeout(t,2000)}}
-    else{c--;if(c<0){c=0;d=false;w=(w+1)%W.length}}
-    setTimeout(t,d?42:76);
-  })();
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- dial + bar data ---- */
+  const dials = [
+    {name:'Kotlin / Android', tag:'Daily driver · 8+ yrs', val:95, color:'#FFB454'},
+    {name:'Mobile Architecture', tag:'MVVM · Modular · Compose', val:92, color:'#56E0D0'},
+    {name:'Engineering Leadership', tag:'Coaching · Pod of 14', val:90, color:'#9D8CFF'},
+    {name:'CI/CD & Quality', tag:'Pipelines · Gates · Coverage', val:88, color:'#FFB454'},
+  ];
+  const bars = [
+    {name:'Jetpack Compose', val:90},
+    {name:'GraphQL / API Integration', val:86},
+    {name:'System Design', val:88},
+    {name:'Stakeholder Management', val:90},
+    {name:'C# / .NET Foundations', val:80},
+    {name:'Testing Strategy (JUnit · Espresso)', val:85},
+  ];
+
+  /* ---- build dials (gauge sweeps 270°, r=52 → C≈326.7) ---- */
+  const R = 52, CIRC = 2*Math.PI*R, SWEEP = CIRC*0.75;
+  const dialsEl = document.getElementById('dials');
+  dials.forEach((d,i)=>{
+    const card = document.createElement('div');
+    card.className = 'dial-card rv d'+((i%4)+1);
+    card.innerHTML = `
+      <svg class="dial-svg" viewBox="0 0 130 130" role="img" aria-label="${d.name}: ${d.val} percent">
+        <circle class="dial-track" cx="65" cy="65" r="${R}"
+          stroke-dasharray="${SWEEP} ${CIRC}" transform="rotate(135 65 65)"/>
+        <circle class="dial-fill" cx="65" cy="65" r="${R}" stroke="${d.color}"
+          data-target="${SWEEP*d.val/100}" stroke-dasharray="0 ${CIRC}"/>
+        <text class="dial-val" x="65" y="66" text-anchor="middle" data-count="${d.val}">0</text>
+        <text class="dial-unit" x="65" y="84" text-anchor="middle">/ 100</text>
+      </svg>
+      <div class="dial-name">${d.name}</div>
+      <div class="dial-tag">${d.tag}</div>`;
+    dialsEl.appendChild(card);
+  });
+
+  /* ---- build bars ---- */
+  const barsEl = document.getElementById('bars');
+  bars.forEach((b,i)=>{
+    const row = document.createElement('div');
+    row.className = 'bar-row rv d'+((i%3)+1);
+    row.innerHTML = `
+      <div class="bar-head"><span>${b.name}</span><span class="pct" data-count="${b.val}">0</span></div>
+      <div class="bar-track"><div class="bar-fill" data-target="${b.val}"></div></div>`;
+    barsEl.appendChild(row);
+  });
+
+  /* ---- count-up ---- */
+  function countUp(el){
+    const target = +el.dataset.count, dur = reduced ? 0 : 1300, t0 = performance.now();
+    function tick(t){
+      const p = dur ? Math.min((t-t0)/dur,1) : 1;
+      el.textContent = Math.round(target*(1-Math.pow(1-p,3)));
+      if(p<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  /* ---- reveal observer ---- */
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      e.target.classList.add('in');
+      e.target.querySelectorAll('[data-count]').forEach(countUp);
+      if(e.target.matches('[data-count]')) countUp(e.target);
+      e.target.querySelectorAll('.dial-fill').forEach(f=>{
+        f.style.strokeDasharray = `${f.dataset.target} ${CIRC}`;
+      });
+      e.target.querySelectorAll('.bar-fill').forEach(f=>{
+        f.style.width = f.dataset.target + '%';
+      });
+      io.unobserve(e.target);
+    });
+  },{threshold:0.25,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+  /* ---- nav + progress ---- */
+  const nav = document.getElementById('nav'), prog = document.getElementById('progress');
+  let ticking = false;
+  window.addEventListener('scroll',()=>{
+    if(ticking) return; ticking = true;
+    requestAnimationFrame(()=>{
+      nav.classList.toggle('scrolled', scrollY > 24);
+      const h = document.documentElement;
+      prog.style.width = (scrollY/(h.scrollHeight-h.clientHeight)*100)+'%';
+      ticking = false;
+    });
+  },{passive:true});
 })();
-
-// ─── COUNT UP ──────────────────────────────────────────────
-function countUp(el){
-  const n=+el.dataset.n, sfx=el.dataset.sfx||'', t0=performance.now(), dur=1800;
-  (function f(t){const p=Math.min((t-t0)/dur,1),e=1-Math.pow(1-p,3);
-    el.textContent=Math.round(e*n)+sfx;if(p<1)requestAnimationFrame(f);})(t0);
-}
-setTimeout(()=>{
-  countUp(Object.assign(document.getElementById('kp1'),{dataset:{n:20,sfx:'+'}}));
-  countUp(Object.assign(document.getElementById('kp2'),{dataset:{n:8,sfx:'+'}}));
-  countUp(Object.assign(document.getElementById('kp3'),{dataset:{n:14,sfx:''}}));
-},1200);
-
-// ─── MOBILE NAV ────────────────────────────────────────────
-const nbgr=document.getElementById('nbgr'), mobnav=document.getElementById('mobnav');
-nbgr.onclick=()=>{nbgr.classList.toggle('o');mobnav.classList.toggle('o')};
-['ml1','ml2','ml3','ml4','ml5'].forEach(id=>{
-  document.getElementById(id).onclick=()=>{nbgr.classList.remove('o');mobnav.classList.remove('o')};
-});
-
-// ─── SECTION DOTS ──────────────────────────────────────────
-const secs=['hero','about','skills','experience','leadership','contact'];
-function updateDots(sc){
-  secs.forEach(id=>{
-    const el=document.getElementById(id);
-    if(!el)return;
-    const t=el.offsetTop, h=el.offsetHeight;
-    const dot=document.querySelector(`.sdot[data-sec="${id}"]`);
-    if(!dot)return;
-    dot.classList.toggle('on', sc>=t-300 && sc<t+h-100);
-  });
-}
-
-// ─── PARALLAX ORBS ─────────────────────────────────────────
-function updateParallax(sc){
-  document.querySelectorAll('[data-parallax]').forEach(el=>{
-    el.style.transform=`translateY(${sc*parseFloat(el.dataset.parallax)}px)`;
-  });
-}
-
-// ─── HORIZONTAL SKILLS SCROLL ──────────────────────────────
-const skillsSec=document.getElementById('skills');
-const skillsTrack=document.getElementById('skills-track');
-const scrollHint=document.getElementById('scroll-hint');
-
-function updateHScroll(sc){
-  if(!skillsSec||!skillsTrack)return;
-  const secTop=skillsSec.offsetTop;
-  const secH=skillsSec.offsetHeight;
-  const vph=window.innerHeight;
-  const scrollInSec=sc-secTop;
-  const maxScroll=secH-vph;
-  if(sc<secTop||sc>secTop+maxScroll)return;
-  const progress=scrollInSec/maxScroll;
-  const maxTranslate=skillsTrack.scrollWidth-window.innerWidth+(window.innerWidth<768?0:80);
-  skillsTrack.style.transform=`translateX(${-Math.min(progress,1)*maxTranslate}px)`;
-  if(scrollHint) scrollHint.style.opacity=progress>0.05?'0':'1';
-  // animate rings when track card enters view
-  skillsTrack.querySelectorAll('.sc-ring-fg').forEach(fg=>{
-    if(fg.dataset.animated)return;
-    const pct=+fg.dataset.pct, C=2*Math.PI*39.3;
-    fg.style.strokeDashoffset=C-(pct/100)*C;
-    fg.dataset.animated=1;
-  });
-}
-
-// ─── TIMELINE LINE ─────────────────────────────────────────
-const tlLine=document.getElementById('tl-line');
-const tlSvg=document.getElementById('tl-svg');
-let tlLength=0;
-if(tlLine){
-  tlLength=tlLine.getTotalLength();
-  tlLine.style.strokeDasharray=tlLength;
-  tlLine.style.strokeDashoffset=tlLength;
-}
-function updateTimeline(sc){
-  if(!tlLine||!tlSvg)return;
-  const rect=tlSvg.closest('#experience').getBoundingClientRect();
-  const secH=tlSvg.closest('#experience').offsetHeight;
-  const progress=Math.min(Math.max((-rect.top+window.innerHeight*0.4)/secH,0),1);
-  tlLine.style.strokeDashoffset=tlLength*(1-progress);
-}
-
-// ─── INTERSECTION OBSERVER ─────────────────────────────────
-const io=new IntersectionObserver(es=>{
-  es.forEach(e=>{
-    if(!e.isIntersecting)return;
-    const t=e.target;
-    // reveal classes
-    t.classList.add('on');
-    // count up for stat nums
-    t.querySelectorAll('[data-n]').forEach(countUp);
-    if(t.dataset.n)countUp(t);
-    // mini bars in panel
-    t.querySelectorAll('.mb-fill').forEach(f=>{f.style.width=f.dataset.w+'%'});
-    io.unobserve(t);
-  });
-},{threshold:.14});
-document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>io.observe(el));
-// hero word rows appear immediately after load
-setTimeout(()=>{
-  document.querySelectorAll('.hero-h1 .word-row').forEach((r,i)=>{
-    setTimeout(()=>r.classList.add('show'),i*200+300);
-  });
-  document.querySelectorAll('.mb-fill').forEach(f=>{f.style.width=f.dataset.w+'%'});
-},100);
-
-// ─── ABOUT WORD-BY-WORD REVEAL ─────────────────────────────
-(function(){
-  const el=document.getElementById('about-statement');
-  if(!el)return;
-  const words=el.textContent.trim().split(/\s+/);
-  el.innerHTML=words.map(w=>`<span class="ww"><span class="w">${w}</span></span>`).join(' ');
-  const wio=new IntersectionObserver(es=>{
-    if(!es[0].isIntersecting)return;
-    el.querySelectorAll('.ww').forEach((ww,i)=>setTimeout(()=>ww.classList.add('show'),i*55));
-    wio.unobserve(el);
-  },{threshold:.2});
-  wio.observe(el);
-})();
-
-// ─── 3D TILT ON LEADERSHIP CARDS ───────────────────────────
-document.querySelectorAll('[data-tilt]').forEach(card=>{
-  card.addEventListener('mousemove',e=>{
-    const r=card.getBoundingClientRect();
-    const x=(e.clientX-r.left-r.width/2)/(r.width/2);
-    const y=(e.clientY-r.top-r.height/2)/(r.height/2);
-    card.style.transform=`perspective(700px) rotateX(${-y*7}deg) rotateY(${x*7}deg) translateZ(8px)`;
-  });
-  card.addEventListener('mouseleave',()=>{card.style.transform=''});
-});
-
-// ─── MOBILE: disable horizontal scroll (collapse to vertical) ──
-if(window.innerWidth<=900 && skillsSec){
-  skillsSec.style.height='auto';
-  document.querySelector('.skills-sticky').style.position='static';
-  document.querySelector('.skills-sticky').style.height='auto';
-  document.querySelector('.skills-sticky').style.overflowX='auto';
-  document.querySelector('.skills-track-wrap').style.overflowX='auto';
-}
 </script>
 </body>
 </html>
