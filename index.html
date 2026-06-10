@@ -75,7 +75,10 @@ nav.scrolled{
 }
 .nav-links a:hover,.nav-links a:focus-visible{color:var(--cyan)}
 a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px}
-@media(max-width:640px){.nav-links{display:none}}
+.lang-switch{display:flex;align-items:center;gap:6px;margin-left:auto;padding-left:16px}
+.lang-btn{font-family:var(--mono);font-size:.7rem;font-weight:700;letter-spacing:.06em;color:var(--muted);background:none;border:none;cursor:pointer;padding:2px 4px;transition:color .2s}
+.lang-btn:hover{color:var(--cyan)}.lang-btn.active{color:var(--amber)}.lang-sep{color:var(--line);font-size:.7rem}
+@media(max-width:640px){.nav-links{display:none}.lang-switch{padding-left:0}}
 
 /* progress bar */
 #progress{
@@ -335,11 +338,16 @@ footer .sig{color:var(--amber)}
 <nav id="nav">
   <a class="brand" href="#top">leandro<b>.raveli</b>()</a>
   <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#experience">Experience</a>
-    <a href="#stack">Stack</a>
-    <a href="#contact">Contact</a>
+    <a href="#about" data-i18n="nav.about">About</a>
+    <a href="#skills" data-i18n="nav.skills">Skills</a>
+    <a href="#experience" data-i18n="nav.experience">Experience</a>
+    <a href="#stack" data-i18n="nav.stack">Stack</a>
+    <a href="#contact" data-i18n="nav.contact">Contact</a>
+  </div>
+  <div class="lang-switch">
+    <button class="lang-btn" id="lang-en" data-lang="en">EN</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-btn" id="lang-pt" data-lang="pt-BR">PT</button>
   </div>
 </nav>
 
@@ -347,18 +355,19 @@ footer .sig{color:var(--amber)}
 
   <!-- HERO -->
   <header class="hero wrap">
-    <span class="status rv"><span class="dot"></span>OPEN TO ENGINEERING MANAGER ROLES · BOURNEMOUTH, UK</span>
-    <h1 class="rv d1">Leandro Raveli<br><span class="accent">Engineering, led with intent.</span></h1>
-    <p class="hero-sub rv d2">Principal Software Engineer and <strong>Engineering Manager candidate</strong> with 20+ years across product-led, enterprise and high-scale environments — turning ambiguous business needs into <strong>scalable mobile architecture</strong> and teams that own their craft.</p>
+    <span class="status rv"><span class="dot"></span><span data-i18n="hero.status">OPEN TO ENGINEERING MANAGER ROLES · BOURNEMOUTH, UK</span></span>
+    <h1 class="rv d1" data-i18n="hero.title">Leandro Raveli<br><span class="accent">Engineering, led with intent.</span></h1>
+    <p class="hero-sub rv d2" data-i18n="hero.sub">Principal Software Engineer and <strong>Engineering Manager candidate</strong> with 20+ years across product-led, enterprise and high-scale environments — turning ambiguous business needs into <strong>scalable mobile architecture</strong> and teams that own their craft.</p>
     <div class="hero-ctas rv d3">
-      <a class="btn primary" href="#experience">View experience ↓</a>
+      <a class="btn primary" href="#experience" data-i18n="hero.cta.exp">View experience ↓</a>
+      <a class="btn ghost" href="Leandro_Raveli_CV_05_2026.docx" download data-i18n="hero.cta.cv">Download CV</a>
       <a class="btn ghost" href="mailto:leandro.raveli@gmail.com">leandro.raveli@gmail.com</a>
     </div>
     <div class="stats rv d4">
-      <div class="stat"><div class="num"><span data-count="20">0</span><em>+</em></div><div class="lbl">Years in software</div></div>
-      <div class="stat"><div class="num"><span data-count="8">0</span><em>+</em></div><div class="lbl">Years at Vitality UK</div></div>
-      <div class="stat"><div class="num"><span data-count="14">0</span></div><div class="lbl">Engineer pod led</div></div>
-      <div class="stat"><div class="num"><span data-count="3">0</span></div><div class="lbl">Countries · BR → UK</div></div>
+      <div class="stat"><div class="num"><span data-count="20">0</span><em>+</em></div><div class="lbl" data-i18n="hero.stat1">Years in software</div></div>
+      <div class="stat"><div class="num"><span data-count="8">0</span><em>+</em></div><div class="lbl" data-i18n="hero.stat2">Years at Vitality UK</div></div>
+      <div class="stat"><div class="num"><span data-count="14">0</span></div><div class="lbl" data-i18n="hero.stat3">Engineer pod led</div></div>
+      <div class="stat"><div class="num"><span data-count="3">0</span></div><div class="lbl" data-i18n="hero.stat4">Countries · BR → UK</div></div>
     </div>
     <div class="scroll-hint rv d4">Scroll</div>
   </header>
@@ -425,27 +434,27 @@ footer .sig{color:var(--amber)}
 
   <!-- ABOUT -->
   <section id="about" class="wrap">
-    <div class="eyebrow rv">01 · Profile</div>
-    <h2 class="rv">Technically grounded.<br>People focused.</h2>
+    <div class="eyebrow rv" data-i18n="eyebrow.about">01 · Profile</div>
+    <h2 class="rv" data-i18n="about.title">Technically grounded.<br>People focused.</h2>
     <div class="about-grid">
       <div class="rv d1">
-        <p>Strategic engineering leader with deep expertise in <strong>mobile architecture, Android/Kotlin, CI/CD and system design</strong>. Currently operating as Principal Software Engineer at Vitality Health Insurance UK, partnering closely with architects, requirements engineers and stakeholders to shape scalable, maintainable solutions.</p>
-        <p>My leadership style centres on <strong>coaching, delivery clarity and technical excellence</strong> — comfortable challenging engineering decisions constructively, while enabling teams to own implementation choices and deliver customer-focused outcomes.</p>
-        <p>Well positioned for roles that combine <strong>people leadership, product &amp; delivery accountability, and technical direction.</strong></p>
+        <p data-i18n="about.p1">Strategic engineering leader with deep expertise in <strong>mobile architecture, Android/Kotlin, CI/CD and system design</strong>. Currently operating as Principal Software Engineer at Vitality Health Insurance UK, partnering closely with architects, requirements engineers and stakeholders to shape scalable, maintainable solutions.</p>
+        <p data-i18n="about.p2">My leadership style centres on <strong>coaching, delivery clarity and technical excellence</strong> — comfortable challenging engineering decisions constructively, while enabling teams to own implementation choices and deliver customer-focused outcomes.</p>
+        <p data-i18n="about.p3">Well positioned for roles that combine <strong>people leadership, product &amp; delivery accountability, and technical direction.</strong></p>
       </div>
       <div class="principles">
-        <div class="principle rv d1"><h4>Coach, don't command</h4><p>Continuous feedback, goal setting and mentoring that grows engineers into owners.</p></div>
-        <div class="principle rv d2"><h4>Clarity beats ambiguity</h4><p>Translating fuzzy business needs into outcome-focused technical direction.</p></div>
-        <div class="principle rv d3"><h4>Standards raise confidence</h4><p>Quality gates, testing strategy and CI/CD that de-risk every release.</p></div>
+        <div class="principle rv d1"><h4 data-i18n="principle.1.title">Coach, don't command</h4><p data-i18n="principle.1.desc">Continuous feedback, goal setting and mentoring that grows engineers into owners.</p></div>
+        <div class="principle rv d2"><h4 data-i18n="principle.2.title">Clarity beats ambiguity</h4><p data-i18n="principle.2.desc">Translating fuzzy business needs into outcome-focused technical direction.</p></div>
+        <div class="principle rv d3"><h4 data-i18n="principle.3.title">Standards raise confidence</h4><p data-i18n="principle.3.desc">Quality gates, testing strategy and CI/CD that de-risk every release.</p></div>
       </div>
     </div>
   </section>
 
   <!-- SKILLS / DIALS -->
   <section id="skills" class="wrap">
-    <div class="eyebrow rv">02 · Instrumentation</div>
-    <h2 class="rv">Core capability dials</h2>
-    <p class="lede rv d1">A live read on where two decades of engineering have compounded — calibrated to current depth and daily practice.</p>
+    <div class="eyebrow rv" data-i18n="eyebrow.skills">02 · Instrumentation</div>
+    <h2 class="rv" data-i18n="skills.title">Core capability dials</h2>
+    <p class="lede rv d1" data-i18n="skills.lede">A live read on where two decades of engineering have compounded — calibrated to current depth and daily practice.</p>
 
     <div class="dials" id="dials"></div>
 
@@ -454,8 +463,8 @@ footer .sig{color:var(--amber)}
 
   <!-- EXPERIENCE -->
   <section id="experience" class="wrap">
-    <div class="eyebrow rv">03 · Trajectory</div>
-    <h2 class="rv">Two decades of delivery</h2>
+    <div class="eyebrow rv" data-i18n="eyebrow.exp">03 · Trajectory</div>
+    <h2 class="rv" data-i18n="exp.title">Two decades of delivery</h2>
 
     <div class="timeline">
 
@@ -519,26 +528,26 @@ footer .sig{color:var(--amber)}
 
   <!-- STACK -->
   <section id="stack" class="wrap">
-    <div class="eyebrow rv">04 · Toolchain</div>
-    <h2 class="rv">Full technical surface</h2>
+    <div class="eyebrow rv" data-i18n="eyebrow.stack">04 · Toolchain</div>
+    <h2 class="rv" data-i18n="stack.title">Full technical surface</h2>
     <div class="stack-grid">
       <div class="stack-card c1 rv d1">
-        <div class="ico">/// Mobile &amp; Architecture</div>
-        <h3>The platform craft</h3>
+        <div class="ico" data-i18n="stack.c1">/// Mobile &amp; Architecture</div>
+        <h3 data-i18n="stack.c1h">The platform craft</h3>
         <div class="t-chips">
           <span class="chip">Kotlin</span><span class="chip">Android</span><span class="chip">Jetpack Compose</span><span class="chip">XML Layouts</span><span class="chip">MVVM</span><span class="chip">Hilt / Dagger</span><span class="chip">Retrofit</span><span class="chip">OkHttp</span><span class="chip">Apollo GraphQL</span><span class="chip">Room</span><span class="chip">SQLCipher</span><span class="chip">Modularisation</span>
         </div>
       </div>
       <div class="stack-card c2 rv d2">
-        <div class="ico">/// Quality &amp; DevOps</div>
-        <h3>The safety net</h3>
+        <div class="ico" data-i18n="stack.c2">/// Quality &amp; DevOps</div>
+        <h3 data-i18n="stack.c2h">The safety net</h3>
         <div class="t-chips">
           <span class="chip">CI/CD Pipelines</span><span class="chip">Jenkins</span><span class="chip">Octopus</span><span class="chip">Jacoco</span><span class="chip">Ktlint</span><span class="chip">Firebase Analytics</span><span class="chip">Crashlytics</span><span class="chip">Dynatrace</span><span class="chip">JUnit</span><span class="chip">Mockito</span><span class="chip">Espresso</span><span class="chip">Compose UI Test</span>
         </div>
       </div>
       <div class="stack-card c3 rv d3">
-        <div class="ico">/// Engineering Depth</div>
-        <h3>The foundations</h3>
+        <div class="ico" data-i18n="stack.c3">/// Engineering Depth</div>
+        <h3 data-i18n="stack.c3h">The foundations</h3>
         <div class="t-chips">
           <span class="chip">C# / .NET</span><span class="chip">Node.js</span><span class="chip">TypeScript</span><span class="chip">SQL Server</span><span class="chip">Oracle DB</span><span class="chip">APIs</span><span class="chip">Distributed Systems</span><span class="chip">System Integration</span><span class="chip">Backend Engineering</span>
         </div>
@@ -549,11 +558,12 @@ footer .sig{color:var(--amber)}
   <!-- EDUCATION + CONTACT -->
   <section id="contact" class="wrap">
     <div class="contact rv">
-      <div class="eyebrow" style="justify-content:center">05 · Connect</div>
-      <h2>Let's build the next thing.</h2>
-      <p>BSc Information Systems (Centro Universitário Padre Anchieta) · Technical Degree in IT (Escola Técnica Vasco Venchiarutti). Based in Bournemouth, Dorset — open to Engineering Manager opportunities.</p>
+      <div class="eyebrow" style="justify-content:center" data-i18n="eyebrow.contact">05 · Connect</div>
+      <h2 data-i18n="contact.title">Let's build the next thing.</h2>
+      <p data-i18n="contact.p">BSc Information Systems (Centro Universitário Padre Anchieta) · Technical Degree in IT (Escola Técnica Vasco Venchiarutti). Based in Bournemouth, Dorset — open to Engineering Manager opportunities.</p>
       <div class="links">
-        <a class="btn primary" href="mailto:leandro.raveli@gmail.com">Email me</a>
+        <a class="btn primary" href="mailto:leandro.raveli@gmail.com" data-i18n="contact.email">Email me</a>
+        <a class="btn ghost" href="Leandro_Raveli_CV_05_2026.docx" download data-i18n="contact.cv">Download CV</a>
         <a class="btn ghost" href="tel:+447467414887">+44 07467 414887</a>
       </div>
     </div>
@@ -561,7 +571,7 @@ footer .sig{color:var(--amber)}
 
 </main>
 
-<footer>
+<footer data-i18n="footer">
   <span class="sig">val</span> nextChapter = <span class="sig">EngineeringManager</span>(leadWith = "intent") · © 2026 Leandro Raveli
 </footer>
 
@@ -569,20 +579,112 @@ footer .sig{color:var(--amber)}
 (function(){
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---- i18n ---- */
+  const i18n = {
+    en: {
+      'nav.about':'About','nav.skills':'Skills','nav.experience':'Experience',
+      'nav.stack':'Stack','nav.contact':'Contact',
+      'hero.status':'OPEN TO ENGINEERING MANAGER ROLES · BOURNEMOUTH, UK',
+      'hero.title':'Leandro Raveli<br><span class="accent">Engineering, led with intent.</span>',
+      'hero.sub':'Principal Software Engineer and <strong>Engineering Manager candidate</strong> with 20+ years across product-led, enterprise and high-scale environments — turning ambiguous business needs into <strong>scalable mobile architecture</strong> and teams that own their craft.',
+      'hero.cta.exp':'View experience ↓','hero.cta.cv':'Download CV',
+      'hero.stat1':'Years in software','hero.stat2':'Years at Vitality UK',
+      'hero.stat3':'Engineer pod led','hero.stat4':'Countries · BR → UK',
+      'eyebrow.about':'01 · Profile','about.title':'Technically grounded.<br>People focused.',
+      'about.p1':'Strategic engineering leader with deep expertise in <strong>mobile architecture, Android/Kotlin, CI/CD and system design</strong>. Currently operating as Principal Software Engineer at Vitality Health Insurance UK, partnering closely with architects, requirements engineers and stakeholders to shape scalable, maintainable solutions.',
+      'about.p2':'My leadership style centres on <strong>coaching, delivery clarity and technical excellence</strong> — comfortable challenging engineering decisions constructively, while enabling teams to own implementation choices and deliver customer-focused outcomes.',
+      'about.p3':'Well positioned for roles that combine <strong>people leadership, product &amp; delivery accountability, and technical direction.</strong>',
+      'principle.1.title':'Coach, don\'t command','principle.1.desc':'Continuous feedback, goal setting and mentoring that grows engineers into owners.',
+      'principle.2.title':'Clarity beats ambiguity','principle.2.desc':'Translating fuzzy business needs into outcome-focused technical direction.',
+      'principle.3.title':'Standards raise confidence','principle.3.desc':'Quality gates, testing strategy and CI/CD that de-risk every release.',
+      'eyebrow.skills':'02 · Instrumentation','skills.title':'Core capability dials',
+      'skills.lede':'A live read on where two decades of engineering have compounded — calibrated to current depth and daily practice.',
+      'eyebrow.exp':'03 · Trajectory','exp.title':'Two decades of delivery',
+      'eyebrow.stack':'04 · Toolchain','stack.title':'Full technical surface',
+      'stack.c1':'/// Mobile &amp; Architecture','stack.c1h':'The platform craft',
+      'stack.c2':'/// Quality &amp; DevOps','stack.c2h':'The safety net',
+      'stack.c3':'/// Engineering Depth','stack.c3h':'The foundations',
+      'eyebrow.contact':'05 · Connect','contact.title':'Let\'s build the next thing.',
+      'contact.p':'BSc Information Systems (Centro Universitário Padre Anchieta) · Technical Degree in IT (Escola Técnica Vasco Venchiarutti). Based in Bournemouth, Dorset — open to Engineering Manager opportunities.',
+      'contact.email':'Email me','contact.cv':'Download CV',
+      'footer':'<span class="sig">val</span> nextChapter = <span class="sig">EngineeringManager</span>(leadWith = "intent") · © 2026 Leandro Raveli',
+      'lang.en':'EN','lang.pt':'PT',
+      'dial.0.name':'Kotlin / Android','dial.0.tag':'Daily driver · 8+ yrs',
+      'dial.1.name':'Mobile Architecture','dial.1.tag':'MVVM · Modular · Compose',
+      'dial.2.name':'Engineering Leadership','dial.2.tag':'Coaching · Pod of 14',
+      'dial.3.name':'CI/CD &amp; Quality','dial.3.tag':'Pipelines · Gates · Coverage',
+      'bar.0.name':'Jetpack Compose','bar.1.name':'GraphQL / API Integration',
+      'bar.2.name':'System Design','bar.3.name':'Stakeholder Management',
+      'bar.4.name':'C# / .NET Foundations','bar.5.name':'Testing Strategy (JUnit · Espresso)',
+    },
+    'pt-BR':{
+      'nav.about':'Sobre','nav.skills':'Habilidades','nav.experience':'Experiência',
+      'nav.stack':'Stack','nav.contact':'Contato',
+      'hero.status':'ABERTO A OPORTUNIDADES DE ENGINEERING MANAGER · BOURNEMOUTH, UK',
+      'hero.title':'Leandro Raveli<br><span class="accent">Engenharia, liderada com propósito.</span>',
+      'hero.sub':'Principal Software Engineer e <strong>candidato a Engineering Manager</strong> com mais de 20 anos em ambientes orientados a produto, corporativos e de alta escala — transformando necessidades ambíguas de negócio em <strong>arquitetura mobile escalável</strong> e equipes que são donas do seu trabalho.',
+      'hero.cta.exp':'Ver experiência ↓','hero.cta.cv':'Baixar CV',
+      'hero.stat1':'Anos em software','hero.stat2':'Anos na Vitality UK',
+      'hero.stat3':'Pod de engenheiros','hero.stat4':'Países · BR → UK',
+      'eyebrow.about':'01 · Perfil','about.title':'Base técnica.<br>Foco em pessoas.',
+      'about.p1':'Líder de engenharia estratégico com profunda experiência em <strong>arquitetura mobile, Android/Kotlin, CI/CD e design de sistemas</strong>. Atualmente atuando como Principal Software Engineer na Vitality Health Insurance UK, colaborando diretamente com arquitetos, engenheiros de requisitos e stakeholders para moldar soluções escaláveis e sustentáveis.',
+      'about.p2':'Meu estilo de liderança é centrado em <strong>coaching, clareza na entrega e excelência técnica</strong> — desafiando decisões de engenharia de forma construtiva, enquanto capacito equipes a assumirem suas escolhas de implementação e entregarem resultados com foco no cliente.',
+      'about.p3':'Bem posicionado para papéis que combinam <strong>liderança de pessoas, responsabilidade de produto &amp; entrega, e direção técnica.</strong>',
+      'principle.1.title':'Oriente, não comande','principle.1.desc':'Feedback contínuo, definição de metas e mentoria que transformam engenheiros em donos.',
+      'principle.2.title':'Clareza vence ambiguidade','principle.2.desc':'Transformar necessidades difusas de negócio em direção técnica orientada a resultados.',
+      'principle.3.title':'Padrões geram confiança','principle.3.desc':'Gates de qualidade, estratégia de testes e CI/CD que eliminam riscos de cada release.',
+      'eyebrow.skills':'02 · Instrumentação','skills.title':'Indicadores de capacidade',
+      'skills.lede':'Uma leitura atual de onde duas décadas de engenharia se acumularam — calibrada para profundidade e prática diária.',
+      'eyebrow.exp':'03 · Trajetória','exp.title':'Duas décadas de entregas',
+      'eyebrow.stack':'04 · Ferramentas','stack.title':'Superfície técnica completa',
+      'stack.c1':'/// Mobile &amp; Arquitetura','stack.c1h':'O ofício da plataforma',
+      'stack.c2':'/// Qualidade &amp; DevOps','stack.c2h':'A rede de segurança',
+      'stack.c3':'/// Profundidade Técnica','stack.c3h':'As fundações',
+      'eyebrow.contact':'05 · Conecte-se','contact.title':'Vamos construir o próximo projeto.',
+      'contact.p':'Bacharel em Sistemas de Informação (Centro Universitário Padre Anchieta) · Curso Técnico em TI (Escola Técnica Vasco Venchiarutti). Baseado em Bournemouth, Dorset — aberto a oportunidades de Engineering Manager.',
+      'contact.email':'Enviar email','contact.cv':'Baixar CV',
+      'footer':'<span class="sig">val</span> nextChapter = <span class="sig">EngineeringManager</span>(leadWith = "intent") · © 2026 Leandro Raveli',
+      'lang.en':'EN','lang.pt':'PT',
+      'dial.0.name':'Kotlin / Android','dial.0.tag':'Ferramenta diária · 8+ anos',
+      'dial.1.name':'Arquitetura Mobile','dial.1.tag':'MVVM · Modular · Compose',
+      'dial.2.name':'Liderança de Engenharia','dial.2.tag':'Coaching · Pod de 14',
+      'dial.3.name':'CI/CD &amp; Qualidade','dial.3.tag':'Pipelines · Gates · Cobertura',
+      'bar.0.name':'Jetpack Compose','bar.1.name':'GraphQL / Integração de APIs',
+      'bar.2.name':'Design de Sistemas','bar.3.name':'Gestão de Stakeholders',
+      'bar.4.name':'Fundamentos C# / .NET','bar.5.name':'Estratégia de Testes (JUnit · Espresso)',
+    }
+  };
+
+  let currentLang = localStorage.getItem('lang') || 'en';
+
+  function t(key){ return i18n[currentLang][key] || i18n['en'][key] || key; }
+
+  function applyLanguage(){
+    document.querySelectorAll('[data-i18n]').forEach(el=>{ el.innerHTML = t(el.dataset.i18n); });
+    document.getElementById('lang-en').classList.toggle('active',currentLang==='en');
+    document.getElementById('lang-pt').classList.toggle('active',currentLang==='pt-BR');
+    localStorage.setItem('lang',currentLang);
+  }
+
+  function switchLang(lang){
+    currentLang = lang;
+    applyLanguage();
+  }
+
   /* ---- dial + bar data ---- */
   const dials = [
-    {name:'Kotlin / Android', tag:'Daily driver · 8+ yrs', val:95, color:'#3B82F6'},
-    {name:'Mobile Architecture', tag:'MVVM · Modular · Compose', val:92, color:'#38BDF8'},
-    {name:'Engineering Leadership', tag:'Coaching · Pod of 14', val:90, color:'#6366F1'},
-    {name:'CI/CD & Quality', tag:'Pipelines · Gates · Coverage', val:88, color:'#3B82F6'},
+    {key:'dial.0', val:95, color:'#3B82F6'},
+    {key:'dial.1', val:92, color:'#38BDF8'},
+    {key:'dial.2', val:90, color:'#6366F1'},
+    {key:'dial.3', val:88, color:'#3B82F6'},
   ];
   const bars = [
-    {name:'Jetpack Compose', val:90},
-    {name:'GraphQL / API Integration', val:86},
-    {name:'System Design', val:88},
-    {name:'Stakeholder Management', val:90},
-    {name:'C# / .NET Foundations', val:80},
-    {name:'Testing Strategy (JUnit · Espresso)', val:85},
+    {key:'bar.0', val:90},
+    {key:'bar.1', val:86},
+    {key:'bar.2', val:88},
+    {key:'bar.3', val:90},
+    {key:'bar.4', val:80},
+    {key:'bar.5', val:85},
   ];
 
   /* ---- build dials (gauge sweeps 270°, r=52 → C≈326.7) ---- */
@@ -592,7 +694,7 @@ footer .sig{color:var(--amber)}
     const card = document.createElement('div');
     card.className = 'dial-card rv d'+((i%4)+1);
     card.innerHTML = `
-      <svg class="dial-svg" viewBox="0 0 130 130" role="img" aria-label="${d.name}: ${d.val} percent">
+      <svg class="dial-svg" viewBox="0 0 130 130" role="img" aria-label="${d.key}: ${d.val} percent">
         <circle class="dial-track" cx="65" cy="65" r="${R}"
           stroke-dasharray="${SWEEP} ${CIRC}" transform="rotate(135 65 65)"/>
         <circle class="dial-fill" cx="65" cy="65" r="${R}" stroke="${d.color}"
@@ -600,8 +702,8 @@ footer .sig{color:var(--amber)}
         <text class="dial-val" x="65" y="66" text-anchor="middle" data-count="${d.val}">0</text>
         <text class="dial-unit" x="65" y="84" text-anchor="middle">/ 100</text>
       </svg>
-      <div class="dial-name">${d.name}</div>
-      <div class="dial-tag">${d.tag}</div>`;
+      <div class="dial-name" data-i18n="${d.key}.name">${t(d.key+'.name')}</div>
+      <div class="dial-tag" data-i18n="${d.key}.tag">${t(d.key+'.tag')}</div>`;
     dialsEl.appendChild(card);
   });
 
@@ -611,7 +713,7 @@ footer .sig{color:var(--amber)}
     const row = document.createElement('div');
     row.className = 'bar-row rv d'+((i%3)+1);
     row.innerHTML = `
-      <div class="bar-head"><span>${b.name}</span><span class="pct" data-count="${b.val}">0</span></div>
+      <div class="bar-head"><span data-i18n="${b.key}.name">${t(b.key+'.name')}</span><span class="pct" data-count="${b.val}">0</span></div>
       <div class="bar-track"><div class="bar-fill" data-target="${b.val}"></div></div>`;
     barsEl.appendChild(row);
   });
@@ -657,6 +759,13 @@ footer .sig{color:var(--amber)}
       ticking = false;
     });
   },{passive:true});
+
+  /* ---- language switch listeners ---- */
+  document.getElementById('lang-en').addEventListener('click',()=>switchLang('en'));
+  document.getElementById('lang-pt').addEventListener('click',()=>switchLang('pt-BR'));
+
+  /* ---- apply initial language ---- */
+  applyLanguage();
 })();
 </script>
 </body>
