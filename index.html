@@ -85,15 +85,17 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offse
 
 /* ---------- layout ---------- */
 .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-section{padding:96px 0}
-@media(max-width:640px){section{padding:64px 0}}
+section.wrap{padding:120px 24px}
+@media(max-width:640px){section.wrap{padding:80px 24px}}
 
 .eyebrow{
   font-family:var(--mono);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--cyan);display:flex;align-items:center;gap:12px;margin-bottom:48px;
+  color:var(--cyan);display:flex;align-items:center;gap:12px;margin-bottom:96px;
 }
+@media(max-width:640px){.eyebrow{margin-bottom:64px}}
 .eyebrow::before{content:"";width:28px;height:1px;background:var(--cyan)}
-h2{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;margin-bottom:24px}
+h2{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;margin-bottom:48px}
+@media(max-width:640px){h2{margin-bottom:32px}}
 .lede{color:var(--muted);max-width:640px;font-size:1.02rem}
 
 /* ---------- reveal on scroll ---------- */
@@ -157,6 +159,43 @@ h1 .accent{
 }
 @keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 
+/* ---------- tech carousel ---------- */
+.tech-band{
+  overflow:hidden;position:relative;
+  border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--panel-2);padding:40px 0;
+}
+.tech-band::before,.tech-band::after{
+  content:"";position:absolute;top:0;bottom:0;width:80px;z-index:2;
+  pointer-events:none;
+}
+.tech-band::before{left:0;background:linear-gradient(90deg,var(--panel-2),transparent)}
+.tech-band::after{right:0;background:linear-gradient(270deg,var(--panel-2),transparent)}
+.tech-track{
+  display:flex;gap:56px;width:max-content;
+  animation:tech-scroll 36s linear infinite;
+}
+.tech-track.r2{animation-direction:reverse;animation-duration:42s;margin-top:32px}
+.tech-track img,.tech-track svg{
+  height:36px;width:auto;opacity:.45;filter:grayscale(1) brightness(1.6);
+  transition:opacity .35s,filter .35s,transform .35s;
+  vertical-align:middle;
+}
+.tech-track a:hover img,.tech-track a:hover svg{
+  opacity:1;filter:grayscale(0) brightness(1);transform:scale(1.12);
+}
+.tech-track a{display:inline-flex;align-items:center;text-decoration:none}
+@keyframes tech-scroll{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+@media(max-width:640px){
+  .tech-band{padding:28px 0}
+  .tech-track{gap:36px}
+  .tech-track img,.tech-track svg{height:28px}
+  .tech-track.r2{margin-top:24px}
+  .tech-band::before,.tech-band::after{width:40px}
+}
 /* ---------- about ---------- */
 .about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:start}
 @media(max-width:820px){.about-grid{grid-template-columns:1fr}}
@@ -174,8 +213,9 @@ h1 .accent{
 
 /* ---------- dials ---------- */
 .dials{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:64px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:96px;
 }
+@media(max-width:640px){.dials{margin-top:64px}}
 @media(max-width:900px){.dials{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:420px){.dials{gap:16px}}
 .dial-card{
@@ -197,7 +237,8 @@ h1 .accent{
 .dial-tag{font-family:var(--mono);font-size:.64rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
 
 /* ---------- bars ---------- */
-.bars{margin-top:72px;display:grid;grid-template-columns:1fr 1fr;gap:18px 48px}
+.bars{margin-top:96px;display:grid;grid-template-columns:1fr 1fr;gap:18px 48px}
+@media(max-width:640px){.bars{margin-top:64px}}
 @media(max-width:760px){.bars{grid-template-columns:1fr}}
 .bar-row .bar-head{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.74rem;margin-bottom:8px}
 .bar-row .bar-head .pct{color:var(--amber)}
@@ -209,7 +250,8 @@ h1 .accent{
 }
 
 /* ---------- timeline ---------- */
-.timeline{position:relative;margin-top:72px;padding-left:36px}
+.timeline{position:relative;margin-top:96px;padding-left:36px}
+@media(max-width:640px){.timeline{margin-top:64px}}
 .timeline::before{
   content:"";position:absolute;left:8px;top:8px;bottom:8px;width:2px;
   background:linear-gradient(var(--amber),var(--cyan),transparent);opacity:.5;
@@ -239,7 +281,8 @@ h1 .accent{
 }
 
 /* ---------- stack groups ---------- */
-.stack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px}
+.stack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:96px}
+@media(max-width:640px){.stack-grid{margin-top:64px}}
 @media(max-width:860px){.stack-grid{grid-template-columns:1fr}}
 .stack-card{
   background:var(--panel-2);border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px;
@@ -278,6 +321,7 @@ footer .sig{color:var(--amber)}
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
   html{scroll-behavior:auto}
   .rv{opacity:1;transform:none}
+  .tech-track{animation:none!important}
 }
 </style>
 </head>
@@ -318,6 +362,66 @@ footer .sig{color:var(--amber)}
     </div>
     <div class="scroll-hint rv d4">Scroll</div>
   </header>
+
+  <!-- TECH CAROUSEL -->
+  <section id="tech" class="wrap">
+    <div class="tech-band rv">
+      <div class="tech-track">
+        <a href="https://kotlinlang.org" target="_blank" rel="noopener" title="Kotlin"><img src="https://cdn.simpleicons.org/kotlin/E9EDF7" alt="Kotlin" loading="lazy"></a>
+        <a href="https://developer.android.com" target="_blank" rel="noopener" title="Android"><img src="https://cdn.simpleicons.org/android/E9EDF7" alt="Android" loading="lazy"></a>
+        <a href="https://developer.android.com/jetpack/compose" target="_blank" rel="noopener" title="Jetpack Compose"><img src="https://cdn.simpleicons.org/jetpackcompose/E9EDF7" alt="Jetpack Compose" loading="lazy"></a>
+        <a href="https://graphql.org" target="_blank" rel="noopener" title="GraphQL"><img src="https://cdn.simpleicons.org/graphql/E9EDF7" alt="GraphQL" loading="lazy"></a>
+        <a href="https://www.jenkins.io" target="_blank" rel="noopener" title="Jenkins"><img src="https://cdn.simpleicons.org/jenkins/E9EDF7" alt="Jenkins" loading="lazy"></a>
+        <a href="https://www.docker.com" target="_blank" rel="noopener" title="Docker"><img src="https://cdn.simpleicons.org/docker/E9EDF7" alt="Docker" loading="lazy"></a>
+        <a href="https://firebase.google.com" target="_blank" rel="noopener" title="Firebase"><img src="https://cdn.simpleicons.org/firebase/E9EDF7" alt="Firebase" loading="lazy"></a>
+        <a href="https://dotnet.microsoft.com" target="_blank" rel="noopener" title="C# / .NET"><img src="https://cdn.simpleicons.org/csharp/E9EDF7" alt="C#" loading="lazy"></a>
+        <a href="https://www.typescriptlang.org" target="_blank" rel="noopener" title="TypeScript"><img src="https://cdn.simpleicons.org/typescript/E9EDF7" alt="TypeScript" loading="lazy"></a>
+        <a href="https://git-scm.com" target="_blank" rel="noopener" title="Git"><img src="https://cdn.simpleicons.org/git/E9EDF7" alt="Git" loading="lazy"></a>
+        <a href="https://nodejs.org" target="_blank" rel="noopener" title="Node.js"><img src="https://cdn.simpleicons.org/nodedotjs/E9EDF7" alt="Node.js" loading="lazy"></a>
+        <a href="https://www.apollographql.com" target="_blank" rel="noopener" title="Apollo GraphQL"><img src="https://cdn.simpleicons.org/apollographql/E9EDF7" alt="Apollo GraphQL" loading="lazy"></a>
+        <!-- duplicate for seamless loop -->
+        <a href="https://kotlinlang.org" target="_blank" rel="noopener" title="Kotlin"><img src="https://cdn.simpleicons.org/kotlin/E9EDF7" alt="Kotlin" loading="lazy"></a>
+        <a href="https://developer.android.com" target="_blank" rel="noopener" title="Android"><img src="https://cdn.simpleicons.org/android/E9EDF7" alt="Android" loading="lazy"></a>
+        <a href="https://developer.android.com/jetpack/compose" target="_blank" rel="noopener" title="Jetpack Compose"><img src="https://cdn.simpleicons.org/jetpackcompose/E9EDF7" alt="Jetpack Compose" loading="lazy"></a>
+        <a href="https://graphql.org" target="_blank" rel="noopener" title="GraphQL"><img src="https://cdn.simpleicons.org/graphql/E9EDF7" alt="GraphQL" loading="lazy"></a>
+        <a href="https://www.jenkins.io" target="_blank" rel="noopener" title="Jenkins"><img src="https://cdn.simpleicons.org/jenkins/E9EDF7" alt="Jenkins" loading="lazy"></a>
+        <a href="https://www.docker.com" target="_blank" rel="noopener" title="Docker"><img src="https://cdn.simpleicons.org/docker/E9EDF7" alt="Docker" loading="lazy"></a>
+        <a href="https://firebase.google.com" target="_blank" rel="noopener" title="Firebase"><img src="https://cdn.simpleicons.org/firebase/E9EDF7" alt="Firebase" loading="lazy"></a>
+        <a href="https://dotnet.microsoft.com" target="_blank" rel="noopener" title="C# / .NET"><img src="https://cdn.simpleicons.org/csharp/E9EDF7" alt="C#" loading="lazy"></a>
+        <a href="https://www.typescriptlang.org" target="_blank" rel="noopener" title="TypeScript"><img src="https://cdn.simpleicons.org/typescript/E9EDF7" alt="TypeScript" loading="lazy"></a>
+        <a href="https://git-scm.com" target="_blank" rel="noopener" title="Git"><img src="https://cdn.simpleicons.org/git/E9EDF7" alt="Git" loading="lazy"></a>
+        <a href="https://nodejs.org" target="_blank" rel="noopener" title="Node.js"><img src="https://cdn.simpleicons.org/nodedotjs/E9EDF7" alt="Node.js" loading="lazy"></a>
+        <a href="https://www.apollographql.com" target="_blank" rel="noopener" title="Apollo GraphQL"><img src="https://cdn.simpleicons.org/apollographql/E9EDF7" alt="Apollo GraphQL" loading="lazy"></a>
+      </div>
+      <div class="tech-track r2">
+        <a href="https://git-scm.com" target="_blank" rel="noopener" title="Git"><img src="https://cdn.simpleicons.org/git/E9EDF7" alt="Git" loading="lazy"></a>
+        <a href="https://www.docker.com" target="_blank" rel="noopener" title="Docker"><img src="https://cdn.simpleicons.org/docker/E9EDF7" alt="Docker" loading="lazy"></a>
+        <a href="https://nodejs.org" target="_blank" rel="noopener" title="Node.js"><img src="https://cdn.simpleicons.org/nodedotjs/E9EDF7" alt="Node.js" loading="lazy"></a>
+        <a href="https://www.jenkins.io" target="_blank" rel="noopener" title="Jenkins"><img src="https://cdn.simpleicons.org/jenkins/E9EDF7" alt="Jenkins" loading="lazy"></a>
+        <a href="https://www.typescriptlang.org" target="_blank" rel="noopener" title="TypeScript"><img src="https://cdn.simpleicons.org/typescript/E9EDF7" alt="TypeScript" loading="lazy"></a>
+        <a href="https://firebase.google.com" target="_blank" rel="noopener" title="Firebase"><img src="https://cdn.simpleicons.org/firebase/E9EDF7" alt="Firebase" loading="lazy"></a>
+        <a href="https://www.apollographql.com" target="_blank" rel="noopener" title="Apollo GraphQL"><img src="https://cdn.simpleicons.org/apollographql/E9EDF7" alt="Apollo GraphQL" loading="lazy"></a>
+        <a href="https://graphql.org" target="_blank" rel="noopener" title="GraphQL"><img src="https://cdn.simpleicons.org/graphql/E9EDF7" alt="GraphQL" loading="lazy"></a>
+        <a href="https://kotlinlang.org" target="_blank" rel="noopener" title="Kotlin"><img src="https://cdn.simpleicons.org/kotlin/E9EDF7" alt="Kotlin" loading="lazy"></a>
+        <a href="https://developer.android.com" target="_blank" rel="noopener" title="Android"><img src="https://cdn.simpleicons.org/android/E9EDF7" alt="Android" loading="lazy"></a>
+        <a href="https://developer.android.com/jetpack/compose" target="_blank" rel="noopener" title="Jetpack Compose"><img src="https://cdn.simpleicons.org/jetpackcompose/E9EDF7" alt="Jetpack Compose" loading="lazy"></a>
+        <a href="https://dotnet.microsoft.com" target="_blank" rel="noopener" title="C# / .NET"><img src="https://cdn.simpleicons.org/csharp/E9EDF7" alt="C#" loading="lazy"></a>
+        <!-- duplicate for seamless loop -->
+        <a href="https://git-scm.com" target="_blank" rel="noopener" title="Git"><img src="https://cdn.simpleicons.org/git/E9EDF7" alt="Git" loading="lazy"></a>
+        <a href="https://www.docker.com" target="_blank" rel="noopener" title="Docker"><img src="https://cdn.simpleicons.org/docker/E9EDF7" alt="Docker" loading="lazy"></a>
+        <a href="https://nodejs.org" target="_blank" rel="noopener" title="Node.js"><img src="https://cdn.simpleicons.org/nodedotjs/E9EDF7" alt="Node.js" loading="lazy"></a>
+        <a href="https://www.jenkins.io" target="_blank" rel="noopener" title="Jenkins"><img src="https://cdn.simpleicons.org/jenkins/E9EDF7" alt="Jenkins" loading="lazy"></a>
+        <a href="https://www.typescriptlang.org" target="_blank" rel="noopener" title="TypeScript"><img src="https://cdn.simpleicons.org/typescript/E9EDF7" alt="TypeScript" loading="lazy"></a>
+        <a href="https://firebase.google.com" target="_blank" rel="noopener" title="Firebase"><img src="https://cdn.simpleicons.org/firebase/E9EDF7" alt="Firebase" loading="lazy"></a>
+        <a href="https://www.apollographql.com" target="_blank" rel="noopener" title="Apollo GraphQL"><img src="https://cdn.simpleicons.org/apollographql/E9EDF7" alt="Apollo GraphQL" loading="lazy"></a>
+        <a href="https://graphql.org" target="_blank" rel="noopener" title="GraphQL"><img src="https://cdn.simpleicons.org/graphql/E9EDF7" alt="GraphQL" loading="lazy"></a>
+        <a href="https://kotlinlang.org" target="_blank" rel="noopener" title="Kotlin"><img src="https://cdn.simpleicons.org/kotlin/E9EDF7" alt="Kotlin" loading="lazy"></a>
+        <a href="https://developer.android.com" target="_blank" rel="noopener" title="Android"><img src="https://cdn.simpleicons.org/android/E9EDF7" alt="Android" loading="lazy"></a>
+        <a href="https://developer.android.com/jetpack/compose" target="_blank" rel="noopener" title="Jetpack Compose"><img src="https://cdn.simpleicons.org/jetpackcompose/E9EDF7" alt="Jetpack Compose" loading="lazy"></a>
+        <a href="https://dotnet.microsoft.com" target="_blank" rel="noopener" title="C# / .NET"><img src="https://cdn.simpleicons.org/csharp/E9EDF7" alt="C#" loading="lazy"></a>
+      </div>
+    </div>
+  </section>
 
   <!-- ABOUT -->
   <section id="about" class="wrap">
