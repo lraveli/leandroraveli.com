@@ -85,17 +85,17 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offse
 
 /* ---------- layout ---------- */
 .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-section.wrap{padding:120px 24px}
-@media(max-width:640px){section.wrap{padding:80px 24px}}
+section.wrap{padding:80px 24px}
+@media(max-width:640px){section.wrap{padding:56px 24px}}
 
 .eyebrow{
   font-family:var(--mono);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--cyan);display:flex;align-items:center;gap:12px;margin-bottom:96px;
+  color:var(--cyan);display:flex;align-items:center;gap:12px;margin-bottom:40px;
 }
-@media(max-width:640px){.eyebrow{margin-bottom:64px}}
+@media(max-width:640px){.eyebrow{margin-bottom:28px}}
 .eyebrow::before{content:"";width:28px;height:1px;background:var(--cyan)}
-h2{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;margin-bottom:48px}
-@media(max-width:640px){h2{margin-bottom:32px}}
+h2{font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;letter-spacing:-.02em;margin-bottom:24px}
+@media(max-width:640px){h2{margin-bottom:18px}}
 .lede{color:var(--muted);max-width:640px;font-size:1.02rem}
 
 /* ---------- reveal on scroll ---------- */
@@ -213,9 +213,9 @@ h1 .accent{
 
 /* ---------- dials ---------- */
 .dials{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:96px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px;
 }
-@media(max-width:640px){.dials{margin-top:64px}}
+@media(max-width:640px){.dials{margin-top:36px}}
 @media(max-width:900px){.dials{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:420px){.dials{gap:16px}}
 .dial-card{
@@ -237,8 +237,8 @@ h1 .accent{
 .dial-tag{font-family:var(--mono);font-size:.64rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
 
 /* ---------- bars ---------- */
-.bars{margin-top:96px;display:grid;grid-template-columns:1fr 1fr;gap:18px 48px}
-@media(max-width:640px){.bars{margin-top:64px}}
+.bars{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:18px 48px}
+@media(max-width:640px){.bars{margin-top:36px}}
 @media(max-width:760px){.bars{grid-template-columns:1fr}}
 .bar-row .bar-head{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.74rem;margin-bottom:8px}
 .bar-row .bar-head .pct{color:var(--amber)}
@@ -250,8 +250,8 @@ h1 .accent{
 }
 
 /* ---------- timeline ---------- */
-.timeline{position:relative;margin-top:96px;padding-left:36px}
-@media(max-width:640px){.timeline{margin-top:64px}}
+.timeline{position:relative;margin-top:48px;padding-left:36px}
+@media(max-width:640px){.timeline{margin-top:36px}}
 .timeline::before{
   content:"";position:absolute;left:8px;top:8px;bottom:8px;width:2px;
   background:linear-gradient(var(--amber),var(--cyan),transparent);opacity:.5;
@@ -281,8 +281,8 @@ h1 .accent{
 }
 
 /* ---------- stack groups ---------- */
-.stack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:96px}
-@media(max-width:640px){.stack-grid{margin-top:64px}}
+.stack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+@media(max-width:640px){.stack-grid{margin-top:36px}}
 @media(max-width:860px){.stack-grid{grid-template-columns:1fr}}
 .stack-card{
   background:var(--panel-2);border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px;
