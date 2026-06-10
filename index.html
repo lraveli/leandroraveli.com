@@ -14,9 +14,9 @@
   --panel:#121A30;
   --panel-2:#0E1528;
   --line:rgba(140,160,210,.14);
-  --amber:#FFB454;
-  --cyan:#56E0D0;
-  --violet:#9D8CFF;
+  --amber:#3B82F6;
+  --cyan:#38BDF8;
+  --violet:#6366F1;
   --text:#E9EDF7;
   --muted:#97A1BC;
   --radius:18px;
@@ -133,7 +133,7 @@ h1 .accent{
   display:inline-flex;align-items:center;gap:8px;
 }
 .btn.primary{background:var(--amber);color:var(--ink)}
-.btn.primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,180,84,.32)}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(59,130,246,.32)}
 .btn.ghost{border:1px solid var(--line);color:var(--text);background:rgba(18,26,48,.5)}
 .btn.ghost:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-2px)}
 
@@ -222,7 +222,7 @@ h1 .accent{
   background:var(--panel-2);border:1px solid var(--line);border-radius:var(--radius);
   padding:26px 18px 22px;text-align:center;transition:border-color .3s,transform .3s,box-shadow .3s;
 }
-.dial-card:hover{border-color:rgba(255,180,84,.4);transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.35)}
+.dial-card:hover{border-color:rgba(59,130,246,.4);transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.35)}
 .dial-svg{width:128px;height:128px;max-width:100%}
 .dial-track{stroke:rgba(140,160,210,.14);fill:none;stroke-width:9;stroke-linecap:round}
 .dial-fill{
@@ -260,9 +260,9 @@ h1 .accent{
 .t-item:last-child{padding-bottom:0}
 .t-item::before{
   content:"";position:absolute;left:-36px;top:7px;width:18px;height:18px;border-radius:50%;
-  background:var(--ink);border:2px solid var(--amber);box-shadow:0 0 0 5px rgba(255,180,84,.12);
+  background:var(--ink);border:2px solid var(--amber);box-shadow:0 0 0 5px rgba(59,130,246,.12);
 }
-.t-item.alt::before{border-color:var(--cyan);box-shadow:0 0 0 5px rgba(86,224,208,.12)}
+.t-item.alt::before{border-color:var(--cyan);box-shadow:0 0 0 5px rgba(56,189,248,.12)}
 .t-date{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:var(--amber);text-transform:uppercase}
 .t-item.alt .t-date{color:var(--cyan)}
 .t-item h3{font-size:1.25rem;margin:8px 0 2px}
@@ -289,9 +289,9 @@ h1 .accent{
   transition:transform .3s,border-color .3s;
 }
 .stack-card:hover{transform:translateY(-4px)}
-.stack-card.c1:hover{border-color:rgba(255,180,84,.45)}
-.stack-card.c2:hover{border-color:rgba(86,224,208,.45)}
-.stack-card.c3:hover{border-color:rgba(157,140,255,.45)}
+.stack-card.c1:hover{border-color:rgba(59,130,246,.45)}
+.stack-card.c2:hover{border-color:rgba(56,189,248,.45)}
+.stack-card.c3:hover{border-color:rgba(99,102,241,.45)}
 .stack-card .ico{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}
 .c1 .ico{color:var(--amber)}.c2 .ico{color:var(--cyan)}.c3 .ico{color:var(--violet)}
 .stack-card h3{font-size:1.1rem;margin-bottom:14px}
@@ -305,7 +305,7 @@ h1 .accent{
 }
 .contact::before{
   content:"";position:absolute;inset:-50%;
-  background:radial-gradient(circle at 50% 0%,rgba(86,224,208,.1),transparent 55%);
+  background:radial-gradient(circle at 50% 0%,rgba(56,189,248,.1),transparent 55%);
   pointer-events:none;
 }
 .contact h2{margin-bottom:10px}
@@ -571,10 +571,10 @@ footer .sig{color:var(--amber)}
 
   /* ---- dial + bar data ---- */
   const dials = [
-    {name:'Kotlin / Android', tag:'Daily driver · 8+ yrs', val:95, color:'#FFB454'},
-    {name:'Mobile Architecture', tag:'MVVM · Modular · Compose', val:92, color:'#56E0D0'},
-    {name:'Engineering Leadership', tag:'Coaching · Pod of 14', val:90, color:'#9D8CFF'},
-    {name:'CI/CD & Quality', tag:'Pipelines · Gates · Coverage', val:88, color:'#FFB454'},
+    {name:'Kotlin / Android', tag:'Daily driver · 8+ yrs', val:95, color:'#3B82F6'},
+    {name:'Mobile Architecture', tag:'MVVM · Modular · Compose', val:92, color:'#38BDF8'},
+    {name:'Engineering Leadership', tag:'Coaching · Pod of 14', val:90, color:'#6366F1'},
+    {name:'CI/CD & Quality', tag:'Pipelines · Gates · Coverage', val:88, color:'#3B82F6'},
   ];
   const bars = [
     {name:'Jetpack Compose', val:90},
